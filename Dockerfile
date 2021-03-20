@@ -35,3 +35,7 @@ EXPOSE 3000
 
 #Play port
 EXPOSE 3001
+
+WORKDIR /src
+
+VOLUME /src
