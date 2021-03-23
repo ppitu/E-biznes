@@ -36,6 +36,12 @@ EXPOSE 3000
 #Play port
 EXPOSE 3001
 
-WORKDIR /src
+RUN useradd -ms /bin/bash ppitu
+RUN adduser ppitu sudo
 
-VOLUME /src
+USER ppitu
+WORKDIR /home/ppitu/
+
+RUN mkdir /home/ppitu/src
+
+VOLUME /home/ppitu/src
