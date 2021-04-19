@@ -30,6 +30,9 @@ RUN apt-get install sbt -y
 #Install npm
 RUN apt-get install npm -y
 
+#Install vim
+RUN apt-get install vim -y
+
 #React port
 EXPOSE 3000
 
