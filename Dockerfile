@@ -43,8 +43,8 @@ RUN useradd -ms /bin/bash ppitu
 RUN adduser ppitu sudo
 
 USER ppitu
-WORKDIR /home/ppitu/
+WORKDIR /home/ppitu/project/backend
 
-RUN mkdir /home/ppitu/src
+RUN mkdir /home/ppitu/project/backend
 
-VOLUME /home/ppitu/src
+VOLUME /home/ppitu/project/backend

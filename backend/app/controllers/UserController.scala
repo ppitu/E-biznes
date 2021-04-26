@@ -10,7 +10,7 @@ import scala.concurrent.ExecutionContext
 @Singleton
 class UserController @Inject()(cc: ControllerComponents, actorSystem: ActorSystem)(implicit exec: ExecutionContext) extends AbstractController(cc){
   def getUsers: Action[AnyContent] = Action {
-    Ok("Gets all user")
+    Ok("Gets all user!!!")
   }
 
   def getUser(id: Long): Action[AnyContent] = Action {
