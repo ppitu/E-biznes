@@ -11,73 +11,73 @@ PUT /users/:id controllers.UserController.updateUser(id: Long)
 DELETE /users/:id controllers.UserController.deleteUser(id: Long)
 
 #Product routers
-GET /produts controllers.UserController.getUsers
-GET /products/:id controllers.UserController.getUser(id: Long)
-POST /products controllers.UserController.addUser
-PUT /products/:id controllers.UserController.updateUser(id: Long)
-DELETE /products/:id controllers.UserController.deleteUser(id: Long)
+GET /produts controllers.ProductController.getProduct
+GET /products/:id controllers.ProductController.getProduct(id: Long)
+POST /products controllers.ProductController.addProduct
+PUT /products/:id controllers.ProductController.updateProduct(id: Long)
+DELETE /products/:id controllers.ProductController.deleteProduct(id: Long)
 
 #Category routers
-GET /categories controllers.UserController.getCategory
-GET /categories/:id controllers.UserController.getCategory(id: Long)
-POST /categories controllers.UserController.addCategory
-PUT /categories/:id controllers.UserController.updateCategory(id: Long)
-DELETE /categories/:id controllers.UserController.deleteCategory(id: Long)
+GET /categories controllers.CategoryController.getCategory
+GET /categories/:id controllers.CategoryController.getCategory(id: Long)
+POST /categories controllers.CategoryController.addCategory
+PUT /categories/:id controllers.CategoryController.updateCategory(id: Long)
+DELETE /categories/:id controllers.CategoryController.deleteCategory(id: Long)
 
 #Discount routers
-GET /discount controllers.UserController.getDiscount
-GET /discount/:id controllers.UserController.getDiscount(id: Long)
-POST /discount controllers.UserController.addDiscount
-PUT /discount/:id controllers.UserController.updateDiscount(id: Long)
-DELETE /discount/:id controllers.UserController.deleteDiscount(id: Long)
+GET /discount controllers.DiscountController.getDiscount
+GET /discount/:id controllers.DiscountController.getDiscount(id: Long)
+POST /discount controllers.DiscountController.addDiscount
+PUT /discount/:id controllers.DiscountController.updateDiscount(id: Long)
+DELETE /discount/:id controllers.DiscountController.deleteDiscount(id: Long)
 
 #History routers
-GET /history controllers.UserController.getHistory
-GET /history/:id controllers.UserController.getHistory(id: Long)
-POST /history controllers.UserController.addHistory
-PUT /history/:id controllers.UserController.updateHistory(id: Long)
-DELETE /history/:id controllers.UserController.deleteHistory(id: Long)
+GET /history controllers.HistoryController.getHistory
+GET /history/:id controllers.HistoryController.getHistory(id: Long)
+POST /history controllers.HistoryController.addHistory
+PUT /history/:id controllers.HistoryController.updateHistory(id: Long)
+DELETE /history/:id controllers.HistoryController.deleteHistory(id: Long)
 
 #HistoryProduct routers
-GET /historyproduct controllers.UserController.getHistoryProduct
-GET /historyproduct/:id controllers.UserController.getHistoryProduct(id: Long)
-POST /historyproduct controllers.UserController.addHistoryProduct
-PUT /historyproduct/:id controllers.UserController.updateHistoryProduct(id: Long)
-DELETE /historyproduct/:id controllers.UserController.deleteHistoryProduct(id: Long)
+GET /historyproduct controllers.HistoryProductController.getHistoryProduct
+GET /historyproduct/:id controllers.HistoryProductController.getHistoryProduct(id: Long)
+POST /historyproduct controllers.HistoryProductController.addHistoryProduct
+PUT /historyproduct/:id controllers.HistoryProductController.updateHistoryProduct(id: Long)
+DELETE /historyproduct/:id controllers.HistoryProductController.deleteHistoryProduct(id: Long)
 
 #New routers
-GET /new controllers.UserController.getNew
-GET /new/:id controllers.UserController.getNew(id: Long)
-POST /new controllers.UserController.addNew
-PUT /new/:id controllers.UserController.updateNew(id: Long)
-DELETE /new/:id controllers.UserController.deleteNew(id: Long)
+GET /new controllers.NewController.getNew
+GET /new/:id controllers.NewController.getNew(id: Long)
+POST /new controllers.NewController.addNew
+PUT /new/:id controllers.NewController.updateNew(id: Long)
+DELETE /new/:id controllers.NewController.deleteNew(id: Long)
 
 #Promotion routers
-GET /promotion controllers.UserController.getPromotion
-GET /promotion/:id controllers.UserController.getPromotion(id: Long)
-POST /promotion controllers.UserController.addPromotion
-PUT /promotion/:id controllers.UserController.updatePromotion(id: Long)
-DELETE /promotion/:id controllers.UserController.deletePromotion(id: Long)
+GET /promotion controllers.PromotionController.getPromotion
+GET /promotion/:id controllers.PromotionController.getPromotion(id: Long)
+POST /promotion controllers.PromotionController.addPromotion
+PUT /promotion/:id controllers.PromotionController.updatePromotion(id: Long)
+DELETE /promotion/:id controllers.PromotionController.deletePromotion(id: Long)
 
 #Recomenation routers
-GET /recomendation controllers.UserController.getRecomenation
-GET /recomendation/:id controllers.UserController.getRecomenation(id: Long)
-POST /recomendation controllers.UserController.addRecomenation
-PUT /recomendation/:id controllers.UserController.updateRecomenation(id: Long)
-DELETE /recomendation/:id controllers.UserController.deleteRecomenation(id: Long)
+GET /recomendation controllers.RecomendationController.getRecomendation
+GET /recomendation/:id controllers.RecomendationController.getRecomendation(id: Long)
+POST /recomendation controllers.RecomendationController.addRecomendation
+PUT /recomendation/:id controllers.RecomendationController.updateRecomendation(id: Long)
+DELETE /recomendation/:id controllers.RecomendationController.deleteRecomendation(id: Long)
 
 #Sale routers
-GET /sale controllers.UserController.getSale
-GET /sale/:id controllers.UserController.getSale(id: Long)
-POST /sale controllers.UserController.addSale
-PUT /sale/:id controllers.UserController.updateSale(id: Long)
-DELETE /sale/:id controllers.UserController.deleteSale(id: Long)
+GET /sale controllers.SaleController.getSale
+GET /sale/:id controllers.SaleController.getSale(id: Long)
+POST /sale controllers.SaleController.addSale
+PUT /sale/:id controllers.SaleController.updateSale(id: Long)
+DELETE /sale/:id controllers.SaleController.deleteSale(id: Long)
 
 #Transation routers
-GET /transation controllers.UserController.getTransation
-GET /transation/:id controllers.UserController.getTransation(id: Long)
-POST /transation controllers.UserController.addTransation
-PUT /transation/:id controllers.UserController.updateTransation(id: Long)
-DELETE /transation/:id controllers.UserController.deleteTransation(id: Long)
+GET /transation controllers.TransactionController.getTransaction
+GET /transation/:id controllers.TransactionController.getTransaction(id: Long)
+POST /transation controllers.TransactionController.addTransaction
+PUT /transation/:id controllers.TransactionController.updateTransaction(id: Long)
+DELETE /transation/:id controllers.TransactionController.deleteTransaction(id: Long)
 
       
