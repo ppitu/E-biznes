@@ -11,70 +11,70 @@ PUT /users/:id controllers.UserController.updateUser(id: Long)
 DELETE /users/:id controllers.UserController.deleteUser(id: Long)
 
 #Product routers
-GET /produts controllers.ProductController.getProduct
+GET /produts controllers.ProductController.getProducts
 GET /products/:id controllers.ProductController.getProduct(id: Long)
 POST /products controllers.ProductController.addProduct
 PUT /products/:id controllers.ProductController.updateProduct(id: Long)
 DELETE /products/:id controllers.ProductController.deleteProduct(id: Long)
 
 #Category routers
-GET /categories controllers.CategoryController.getCategory
+GET /categories controllers.CategoryController.getCategories
 GET /categories/:id controllers.CategoryController.getCategory(id: Long)
 POST /categories controllers.CategoryController.addCategory
 PUT /categories/:id controllers.CategoryController.updateCategory(id: Long)
 DELETE /categories/:id controllers.CategoryController.deleteCategory(id: Long)
 
 #Discount routers
-GET /discount controllers.DiscountController.getDiscount
+GET /discount controllers.DiscountController.getDiscounts
 GET /discount/:id controllers.DiscountController.getDiscount(id: Long)
 POST /discount controllers.DiscountController.addDiscount
 PUT /discount/:id controllers.DiscountController.updateDiscount(id: Long)
 DELETE /discount/:id controllers.DiscountController.deleteDiscount(id: Long)
 
 #History routers
-GET /history controllers.HistoryController.getHistory
+GET /history controllers.HistoryController.getHistories
 GET /history/:id controllers.HistoryController.getHistory(id: Long)
 POST /history controllers.HistoryController.addHistory
 PUT /history/:id controllers.HistoryController.updateHistory(id: Long)
 DELETE /history/:id controllers.HistoryController.deleteHistory(id: Long)
 
 #HistoryProduct routers
-GET /historyproduct controllers.HistoryProductController.getHistoryProduct
+GET /historyproduct controllers.HistoryProductController.getHistoryProducts
 GET /historyproduct/:id controllers.HistoryProductController.getHistoryProduct(id: Long)
 POST /historyproduct controllers.HistoryProductController.addHistoryProduct
 PUT /historyproduct/:id controllers.HistoryProductController.updateHistoryProduct(id: Long)
 DELETE /historyproduct/:id controllers.HistoryProductController.deleteHistoryProduct(id: Long)
 
 #New routers
-GET /new controllers.NewController.getNew
+GET /new controllers.NewController.getNews
 GET /new/:id controllers.NewController.getNew(id: Long)
 POST /new controllers.NewController.addNew
 PUT /new/:id controllers.NewController.updateNew(id: Long)
 DELETE /new/:id controllers.NewController.deleteNew(id: Long)
 
 #Promotion routers
-GET /promotion controllers.PromotionController.getPromotion
+GET /promotion controllers.PromotionController.getPromotions
 GET /promotion/:id controllers.PromotionController.getPromotion(id: Long)
 POST /promotion controllers.PromotionController.addPromotion
 PUT /promotion/:id controllers.PromotionController.updatePromotion(id: Long)
 DELETE /promotion/:id controllers.PromotionController.deletePromotion(id: Long)
 
 #Recomenation routers
-GET /recomendation controllers.RecomendationController.getRecomendation
-GET /recomendation/:id controllers.RecomendationController.getRecomendation(id: Long)
-POST /recomendation controllers.RecomendationController.addRecomendation
-PUT /recomendation/:id controllers.RecomendationController.updateRecomendation(id: Long)
-DELETE /recomendation/:id controllers.RecomendationController.deleteRecomendation(id: Long)
+GET /recomendation controllers.RecommendationController.getRecommendations
+GET /recomendation/:id controllers.RecommendationController.getRecommendation(id: Long)
+POST /recomendation controllers.RecommendationController.addRecommendation
+PUT /recomendation/:id controllers.RecommendationController.updateRecommendation(id: Long)
+DELETE /recomendation/:id controllers.RecommendationController.deleteRecommendation(id: Long)
 
 #Sale routers
-GET /sale controllers.SaleController.getSale
+GET /sale controllers.SaleController.getSales
 GET /sale/:id controllers.SaleController.getSale(id: Long)
 POST /sale controllers.SaleController.addSale
 PUT /sale/:id controllers.SaleController.updateSale(id: Long)
 DELETE /sale/:id controllers.SaleController.deleteSale(id: Long)
 
 #Transation routers
-GET /transation controllers.TransactionController.getTransaction
+GET /transation controllers.TransactionController.getTransactions
 GET /transation/:id controllers.TransactionController.getTransaction(id: Long)
 POST /transation controllers.TransactionController.addTransaction
 PUT /transation/:id controllers.TransactionController.updateTransaction(id: Long)

@@ -7,7 +7,7 @@ import javax.inject.Inject
 import scala.concurrent.ExecutionContext
 
 class NewController @Inject()(cc: ControllerComponents, actorSystem: ActorSystem)(implicit exec: ExecutionContext) extends AbstractController(cc){
-  def getNew: Action[AnyContent] = Action {
+  def getNews: Action[AnyContent] = Action {
     Ok("Gets all New")
   }
 

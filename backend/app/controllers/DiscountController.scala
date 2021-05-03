@@ -8,7 +8,7 @@ import play.api.mvc._
 import scala.concurrent.ExecutionContext
 
 class DiscountController @Inject()(cc: ControllerComponents, actorSystem: ActorSystem)(implicit exec: ExecutionContext) extends AbstractController(cc){
-  def getDiscount: Action[AnyContent] = Action {
+  def getDiscounts: Action[AnyContent] = Action {
     Ok("Gets all Discounts")
   }
 

@@ -7,7 +7,7 @@ import javax.inject.Inject
 import scala.concurrent.ExecutionContext
 
 class HistoryProductController @Inject()(cc: ControllerComponents, actorSystem: ActorSystem)(implicit exec: ExecutionContext) extends AbstractController(cc){
-  def getHistoryProduct: Action[AnyContent] = Action {
+  def getHistoryProducts: Action[AnyContent] = Action {
     Ok("Gets all HistoryProducts")
   }
 

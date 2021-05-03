@@ -8,7 +8,7 @@ import play.api.mvc._
 import scala.concurrent.ExecutionContext
 
 class PromotionController @Inject()(cc: ControllerComponents, actorSystem: ActorSystem)(implicit exec: ExecutionContext) extends AbstractController(cc){
-  def getPromotion: Action[AnyContent] = Action {
+  def getPromotions: Action[AnyContent] = Action {
     Ok("Gets all Promotions")
   }
 

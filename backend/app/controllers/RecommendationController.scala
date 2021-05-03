@@ -7,8 +7,8 @@ import play.api.mvc._
 
 import scala.concurrent.ExecutionContext
 
-class RecommendationController(cc: ControllerComponents, actorSystem: ActorSystem)(implicit exec: ExecutionContext) extends AbstractController(cc){
-  def getRecommendation: Action[AnyContent] = Action {
+class RecommendationController @Inject()(cc: ControllerComponents, actorSystem: ActorSystem)(implicit exec: ExecutionContext) extends AbstractController(cc){
+  def getRecommendations: Action[AnyContent] = Action {
     Ok("Gets all Recommendations")
   }
 

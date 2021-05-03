@@ -8,7 +8,7 @@ import play.api.mvc._
 import scala.concurrent.ExecutionContext
 
 class CategoryController @Inject()(cc: ControllerComponents, actorSystem: ActorSystem)(implicit exec: ExecutionContext) extends AbstractController(cc){
-  def getCategory: Action[AnyContent] = Action {
+  def getCategories: Action[AnyContent] = Action {
     Ok("Gets all categories")
   }
 
