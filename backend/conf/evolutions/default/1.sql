@@ -36,7 +36,7 @@ CREATE TABLE "promotion"
     "created_at" TIMESTAMP NOT NULL,
     "updated_at" TIMESTAMP NOT NULL,
     FOREIGN KEY(product_id) REFERENCES product(id)
-)
+);
 
 CREATE TABLE "discount"
 (
@@ -47,7 +47,27 @@ CREATE TABLE "discount"
     "updated_at" TIMESTAMP NOT NULL,
     FOREIGN KEY(product_id) REFERENCES product(id),
     FOREIGN KEY (user_id) REFERENCES user(id)
-)
+);
+
+CREATE TABLE "order"
+(
+    "id"         INTEGER   NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "user_id"   INTEGER NOT NULL,
+    "amount"    REAL NOT NULL,
+    "date"      VARCHAR NOT NULL,
+    "created_at" TIMESTAMP NOT NULL,
+    "updated_at" TIMESTAMP NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES user(id)
+);
+
+CREATE TABLE "order_element"
+(
+    "id"         INTEGER   NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "product_id" INTEGER NOT NULL,
+    "created_at" TIMESTAMP NOT NULL,
+    "updated_at" TIMESTAMP NOT NULL,
+    FOREIGN KEY(product_id) REFERENCES product(id)
+);
 
 -- !Downs
 
@@ -56,3 +76,5 @@ DROP TABLE "product"
 DROP TABLE "category"
 DROP TABLE "promotion"
 DROP TABLE "discount"
+DROP TABLE "order_element"
+DROP TABLE "order"

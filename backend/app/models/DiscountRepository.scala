@@ -10,20 +10,20 @@ import scala.concurrent.{ExecutionContext, Future}
 
 
 @Singleton
-class DiscountRepository @Inject()(dbConfigProvider: DatabaseConfigProvider, productRepository: ProductRepository, userRepository: UserRepository)(implicit ec: ExecutionContext) {
+class DiscountRepository @Inject()(val dbConfigProvider: DatabaseConfigProvider, val productRepository: ProductRepository, val userRepository: UserRepository)(implicit ec: ExecutionContext) {
   val dbConfig = dbConfigProvider.get[JdbcProfile]
 
   import dbConfig._
   import profile.api._
 
-  class DiscoutTable(tag: Tag) extends Table[Discount](tag, "discount") {
+  class DiscountTable(tag: Tag) extends Table[Discount](tag, "discount") {
     def id = column[Long]("id", O.PrimaryKey, O.AutoInc)
 
     def product_id = column[Long]("product_id")
 
     def user_id = column[Long]("user_id")
 
-    def product_fk = foreignKey("product_fk", product_id, product_)(_.id)
+    def product_fk = foreignKey("prod_fk", product_id, product_)(_.id)
 
     def user_fk = foreignKey("user_fk", user_id, user_)(_.id)
 
@@ -39,7 +39,7 @@ class DiscountRepository @Inject()(dbConfigProvider: DatabaseConfigProvider, pro
 
   private val product_ = TableQuery[ProductTable]
   private val user_ = TableQuery[UserTable]
-  private val discount_ = TableQuery[DiscoutTable]
+  private val discount_ = TableQuery[DiscountTable]
 
   def create(product_id: Long, user_id: Long, createdAt: Timestamp = Timestamp.from(Instant.now()), updatedAt: Timestamp = Timestamp.from(Instant.now())): Future[Discount] = db.run {
     (discount_.map(d => (d.product_id, d.user_id, d.createdAt, d.updatedAt))

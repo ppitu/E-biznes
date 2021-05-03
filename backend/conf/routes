@@ -46,11 +46,11 @@ PUT /historyproduct/:id controllers.HistoryProductController.updateHistoryProduc
 DELETE /historyproduct/:id controllers.HistoryProductController.deleteHistoryProduct(id: Long)
 
 #New routers
-GET /new controllers.NewController.getNews
-GET /new/:id controllers.NewController.getNew(id: Long)
-POST /new controllers.NewController.addNew
-PUT /new/:id controllers.NewController.updateNew(id: Long)
-DELETE /new/:id controllers.NewController.deleteNew(id: Long)
+GET /new controllers.AddressController.getAddresses
+GET /new/:id controllers.AddressController.getAddress(id: Long)
+POST /new controllers.AddressController.addAddress
+PUT /new/:id controllers.AddressController.updateAddress(id: Long)
+DELETE /new/:id controllers.AddressController.deleteAddress(id: Long)
 
 #Promotion routers
 GET /promotion controllers.PromotionController.getPromotions
