@@ -7,7 +7,7 @@ import play.api.mvc._
 
 import scala.concurrent.ExecutionContext
 
-class TransactionController (cc: ControllerComponents, actorSystem: ActorSystem)(implicit exec: ExecutionContext) extends AbstractController(cc){
+class TransactionController @Inject()(cc: ControllerComponents, actorSystem: ActorSystem)(implicit exec: ExecutionContext) extends AbstractController(cc){
   def getTransaction: Action[AnyContent] = Action {
     Ok("Gets all Transaction")
   }

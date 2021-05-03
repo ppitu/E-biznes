@@ -3,9 +3,10 @@ package controllers
 import akka.actor.ActorSystem
 import play.api.mvc.{AbstractController, Action, AnyContent, ControllerComponents}
 
+import javax.inject.Inject
 import scala.concurrent.ExecutionContext
 
-class HistoryProductController (cc: ControllerComponents, actorSystem: ActorSystem)(implicit exec: ExecutionContext) extends AbstractController(cc){
+class HistoryProductController @Inject()(cc: ControllerComponents, actorSystem: ActorSystem)(implicit exec: ExecutionContext) extends AbstractController(cc){
   def getHistoryProduct: Action[AnyContent] = Action {
     Ok("Gets all HistoryProducts")
   }

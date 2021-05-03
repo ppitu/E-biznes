@@ -7,7 +7,7 @@ import play.api.mvc._
 
 import scala.concurrent.ExecutionContext
 
-class HistoryController (cc: ControllerComponents, actorSystem: ActorSystem)(implicit exec: ExecutionContext) extends AbstractController(cc){
+class HistoryController @Inject()(cc: ControllerComponents, actorSystem: ActorSystem)(implicit exec: ExecutionContext) extends AbstractController(cc){
   def getHistory: Action[AnyContent] = Action {
     Ok("Gets all History")
   }

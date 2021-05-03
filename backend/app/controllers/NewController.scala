@@ -3,9 +3,10 @@ package controllers
 import akka.actor.ActorSystem
 import play.api.mvc.{AbstractController, Action, AnyContent, ControllerComponents}
 
+import javax.inject.Inject
 import scala.concurrent.ExecutionContext
 
-class NewController (cc: ControllerComponents, actorSystem: ActorSystem)(implicit exec: ExecutionContext) extends AbstractController(cc){
+class NewController @Inject()(cc: ControllerComponents, actorSystem: ActorSystem)(implicit exec: ExecutionContext) extends AbstractController(cc){
   def getNew: Action[AnyContent] = Action {
     Ok("Gets all New")
   }
