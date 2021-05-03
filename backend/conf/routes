@@ -31,12 +31,12 @@ POST /discount controllers.DiscountController.addDiscount
 PUT /discount/:id controllers.DiscountController.updateDiscount(id: Long)
 DELETE /discount/:id controllers.DiscountController.deleteDiscount(id: Long)
 
-#History routers
-GET /history controllers.HistoryController.getHistories
-GET /history/:id controllers.HistoryController.getHistory(id: Long)
-POST /history controllers.HistoryController.addHistory
-PUT /history/:id controllers.HistoryController.updateHistory(id: Long)
-DELETE /history/:id controllers.HistoryController.deleteHistory(id: Long)
+#Order routers
+GET /history controllers.OrderController.getOrders
+GET /history/:id controllers.OrderController.getOrder(id: Long)
+POST /history controllers.OrderController.addOrder
+PUT /history/:id controllers.OrderController.updateOrder(id: Long)
+DELETE /history/:id controllers.OrderController.deleteOrder(id: Long)
 
 #HistoryProduct routers
 GET /historyproduct controllers.HistoryProductController.getHistoryProducts
