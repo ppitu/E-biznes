@@ -15,7 +15,7 @@ class UserRepository @Inject()(dbConfigProvider: DatabaseConfigProvider)(implici
   import dbConfig._
   import profile.api._
 
-  private class UserTable(tag: Tag) extends Table[User](tag, "user") {
+  class UserTable(tag: Tag) extends Table[User](tag, "user") {
     def id = column[Long]("id", O.PrimaryKey, O.AutoInc)
 
     def name = column[String]("name", O.Unique)
