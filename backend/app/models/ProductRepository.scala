@@ -16,7 +16,7 @@ class ProductRepository @Inject()(dbConfigProvider: DatabaseConfigProvider, cate
   import dbConfig._
   import profile.api._
 
-  private class ProductTable(tag: Tag) extends Table[Product](tag, "product") {
+  class ProductTable(tag: Tag) extends Table[Product](tag, "product") {
     def id = column[Long]("id", O.PrimaryKey, O.AutoInc)
 
     def name = column[String]("name", O.Unique)

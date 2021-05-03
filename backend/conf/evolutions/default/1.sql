@@ -29,8 +29,17 @@ CREATE TABLE "product"
     FOREIGN KEY(category_id) REFERENCES category(id)
 );
 
+CREATE TABLE "promotion"
+(
+    "id"         INTEGER   NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "product_id" INTEGER NOT NULL,
+    "created_at" TIMESTAMP NOT NULL,
+    "updated_at" TIMESTAMP NOT NULL,
+    FOREIGN KEY(product_id) REFERENCES product(id)
+)
 -- !Downs
 
 DROP TABLE "user"
 DROP TABLE "product"
 DROP TABLE "category"
+DROP TABLE "promotion"
