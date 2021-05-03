@@ -67,11 +67,11 @@ PUT /recomendation/:id controllers.RecommendationController.updateRecommendation
 DELETE /recomendation/:id controllers.RecommendationController.deleteRecommendation(id: Long)
 
 #Sale routers
-GET /sale controllers.SaleController.getSales
-GET /sale/:id controllers.SaleController.getSale(id: Long)
-POST /sale controllers.SaleController.addSale
-PUT /sale/:id controllers.SaleController.updateSale(id: Long)
-DELETE /sale/:id controllers.SaleController.deleteSale(id: Long)
+GET /sale controllers.OrderElementController.getOrderElements
+GET /sale/:id controllers.OrderElementController.getOrderElement(id: Long)
+POST /sale controllers.OrderElementController.addOrderElement
+PUT /sale/:id controllers.OrderElementController.updateOrderElement(id: Long)
+DELETE /sale/:id controllers.OrderElementController.deleteOrderElement(id: Long)
 
 #Transation routers
 GET /transation controllers.TransactionController.getTransactions
