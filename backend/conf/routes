@@ -73,11 +73,5 @@ POST /sale controllers.OrderElementController.addOrderElement
 PUT /sale/:id controllers.OrderElementController.updateOrderElement(id: Long)
 DELETE /sale/:id controllers.OrderElementController.deleteOrderElement(id: Long)
 
-#Transation routers
-GET /transation controllers.TransactionController.getTransactions
-GET /transation/:id controllers.TransactionController.getTransaction(id: Long)
-POST /transation controllers.TransactionController.addTransaction
-PUT /transation/:id controllers.TransactionController.updateTransaction(id: Long)
-DELETE /transation/:id controllers.TransactionController.deleteTransaction(id: Long)
 
       

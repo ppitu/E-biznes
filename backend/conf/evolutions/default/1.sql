@@ -69,6 +69,40 @@ CREATE TABLE "order_element"
     FOREIGN KEY(product_id) REFERENCES product(id)
 );
 
+CREATE TABLE "address"
+(
+    "id"         INTEGER   NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "street"    VARCHAR ,
+    "zipcode"    VARCHAR ,
+    "number"    VARCHAR ,
+    "city"    VARCHAR ,
+    "created_at" TIMESTAMP NOT NULL,
+    "updated_at" TIMESTAMP NOT NULL
+);
+
+CREATE TABLE "credit_card"
+(
+    "id"         INTEGER   NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "holder_name" VARCHAR ,
+    "number"        INTEGER ,
+    "cvv"       INTEGER ,
+    "date"  VARCHAR ,
+    "created_at" TIMESTAMP NOT NULL,
+    "updated_at" TIMESTAMP NOT NULL
+);
+
+CREATE TABLE "payment"
+(
+    "id"         INTEGER   NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "user_id" INTEGER,
+    "credit_card_id" INTEGER ,
+    "date" VARCHAR ,
+    "created_at" TIMESTAMP NOT NULL,
+    "updated_at" TIMESTAMP NOT NULL,
+    FOREIGN KEY(user_id) REFERENCES user(id),
+    FOREIGN KEY(credit_card_id) REFERENCES credit_card(id)
+);
+
 -- !Downs
 
 DROP TABLE "user"
@@ -78,3 +112,6 @@ DROP TABLE "promotion"
 DROP TABLE "discount"
 DROP TABLE "order_element"
 DROP TABLE "order"
+DROP TABLE "address"
+DROP TABLE "credit_card"
+DROP TABLE "payment"
