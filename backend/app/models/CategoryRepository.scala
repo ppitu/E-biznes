@@ -18,7 +18,7 @@ class CategoryRepository @Inject()(dbConfigProvider: DatabaseConfigProvider)(imp
   class CategoryTable(tag: Tag) extends Table[Category](tag, "category") {
     def id = column[Long]("id", O.PrimaryKey, O.AutoInc)
 
-    def name = column[String]("name", O.Unique)
+    def name = column[String]("name")
 
     def createdAt: Rep[Timestamp] = column[Timestamp]("created_at")
 
@@ -47,10 +47,10 @@ class CategoryRepository @Inject()(dbConfigProvider: DatabaseConfigProvider)(imp
     category.filter(_.id === id).result.head
   }
 
-  def delete(id: Long): Future[Unit] = db.run(category.filter(_.id === id).delete).map(_ => ())
+  def delete(id: Long): Future[Int] = db.run(category.filter(_.id === id).delete)
 
-  def update(id: Long, new_category: Category): Future[Unit] = {
+  def update(id: Long, new_category: Category): Future[Int] = {
     val categoryToUpdate: Category = new_category.copy(id)
-    db.run(category.filter(_.id === id).update(categoryToUpdate)).map(_ => ())
+    db.run(category.filter(_.id === id).update(categoryToUpdate))
   }
 }

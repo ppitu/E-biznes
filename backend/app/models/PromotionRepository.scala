@@ -48,10 +48,10 @@ class PromotionRepository @Inject()(dbConfigProvider: DatabaseConfigProvider, pr
     promotion_.filter(_.id === id).result.head
   }
 
-  def delete(id: Long): Future[Unit] = db.run(promotion_.filter(_.id === id).delete).map(_ => ())
+  def delete(id: Long): Future[Int] = db.run(promotion_.filter(_.id === id).delete)
 
-  def update(id: Long, new_promotion: Promotion): Future[Unit] = {
+  def update(id: Long, new_promotion: Promotion): Future[Int] = {
     val promotionToUpdate: Promotion = new_promotion.copy(id)
-    db.run(promotion_.filter(_.id === id).update(promotionToUpdate)).map(_ => ())
+    db.run(promotion_.filter(_.id === id).update(promotionToUpdate))
   }
 }

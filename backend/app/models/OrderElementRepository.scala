@@ -50,10 +50,10 @@ class OrderElementRepository @Inject()(val dbConfigProvider: DatabaseConfigProvi
     orderElement_.filter(_.id === id).result.head
   }
 
-  def delete(id: Long): Future[Unit] = db.run(orderElement_.filter(_.id === id).delete).map(_ => ())
+  def delete(id: Long): Future[Int] = db.run(orderElement_.filter(_.id === id).delete)
 
-  def update(id: Long, new_order_element: OrderElement): Future[Unit] = {
+  def update(id: Long, new_order_element: OrderElement): Future[Int] = {
     val orderElementToUpdate: OrderElement = new_order_element.copy(id)
-    db.run(orderElement_.filter(_.id === id).update(orderElementToUpdate)).map(_ => ())
+    db.run(orderElement_.filter(_.id === id).update(orderElementToUpdate))
   }
 }

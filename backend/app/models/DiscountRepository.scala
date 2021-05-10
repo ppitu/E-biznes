@@ -56,10 +56,10 @@ class DiscountRepository @Inject()(val dbConfigProvider: DatabaseConfigProvider,
     discount_.filter(_.id === id).result.head
   }
 
-  def delete(id: Long): Future[Unit] = db.run(discount_.filter(_.id === id).delete).map(_ => ())
+  def delete(id: Long): Future[Int] = db.run(discount_.filter(_.id === id).delete)
 
-  def update(id: Long, new_discount: Discount): Future[Unit] = {
+  def update(id: Long, new_discount: Discount): Future[Int] = {
     val discountToUpdate: Discount = new_discount.copy(id)
-    db.run(discount_.filter(_.id === id).update(discountToUpdate)).map(_ => ())
+    db.run(discount_.filter(_.id === id).update(discountToUpdate))
   }
 }
