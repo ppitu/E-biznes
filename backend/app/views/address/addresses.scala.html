@@ -1,0 +1,9 @@
+@(addresses: Seq[Address])
+
+@for(address <- addresses) {
+    <b>@address.id</b>
+    <b>@address.street</b>
+    <b>@address.zipcode</b>
+    <b>@address.number</b>
+    <b>@address.city</b><br/>
+}

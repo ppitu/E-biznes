@@ -13,7 +13,7 @@ POST /usersaddhandler controllers.UserController.addUserHandler
 POST /users controllers.UserController.addUser
 PUT /users/:id controllers.UserController.updateUser(id: String)
 GET /usersupdate/:id controllers.UserController.updateUserForm(id: String)
-POST /isersupdatehandler controllers.UserController.updateUserHandler
+POST /usersupdatehandler controllers.UserController.updateUserHandler
 DELETE /users/:id controllers.UserController.deleteUser(id: String)
 
 #Product routers
@@ -57,42 +57,78 @@ DELETE /discount/:id controllers.DiscountController.deleteDiscount(id: String)
 
 #Order routers
 GET /orders controllers.OrderController.getOrders
+GET /ordersfrom controllers.OrderController.getOrdersForm
 GET /orders/:id controllers.OrderController.getOrder(id: String)
+GET /orderform/:id controllers.OrderController.getOrderForm(id: String)
+GET /orderadd controllers.OrderController.addOrderForm
+POST /orderaddhandler controllers.OrderController.addOrderHandler
+GET /orderupdate/:id controllers.OrderController.updateOrderForm(id: String)
+POST /orderupdatehandler controllers.OrderController.updateProductHandler
 POST /orders controllers.OrderController.addOrder
 PUT /orders/:id controllers.OrderController.updateOrder(id: String)
 DELETE /orders/:id controllers.OrderController.deleteOrder(id: String)
 
-#HistoryProduct routers
+#Payments routers
 GET /payments controllers.PaymentController.getPayments
+GET /paymentsform controllers.PaymentController.getPaymentsForm
 GET /payments/:id controllers.PaymentController.getPayment(id: String)
+GET /paymentform/:id controllers.PaymentController.getPaymentForm(id: String)
+GET /paymentadd controllers.PaymentController.addPaymentForm
+POST /paymentaddhandler controllers.PaymentController.addPaymentHandler
+GET /paymentupdate/:id controllers.PaymentController.updatePaymentForm(id: String)
+POST /paymentupdatehandler controllers.PaymentController.updatePaymentHandler
 POST /payments controllers.PaymentController.addPayment
 PUT /payments/:id controllers.PaymentController.updatePayment(id: String)
 DELETE /payments/:id controllers.PaymentController.deletePayment(id: String)
 
 #Promotion routers
 GET /promotion controllers.PromotionController.getPromotions
+GET /promotionform controllers.PromotionController.getPromotionsForm
 GET /promotion/:id controllers.PromotionController.getPromotion(id: String)
+GET /promotionform/:id controllers.PromotionController.getPromotionForm(id: String)
+GET /promotionadd controllers.PromotionController.addPromotionForm
+POST /promotionaddhandler controllers.PromotionController.addPromotionHandler
+GET /promotionupdate/:id controllers.PromotionController.updatePromotionForm(id: String)
+POST /promotionupdatehandler controllers.PromotionController.updatePromotionHandler
 POST /promotion controllers.PromotionController.addPromotion
 PUT /promotion/:id controllers.PromotionController.updatePromotion(id: String)
 DELETE /promotion/:id controllers.PromotionController.deletePromotion(id: String)
 
-#Recomenation routers
+#CreditCards routers
 GET /creditcards controllers.CreditCardController.getCreditCards
+GET /creditcardsform controllers.CreditCardController.getCreditCardsForm
+GET /creditcardform/:id controllers.CreditCardController.getCreditCardForm(id: String)
 GET /creditcards/:id controllers.CreditCardController.getCreditCard(id: String)
+GET /creditcardsadd controllers.CreditCardController.addCreditCardForm
+POST /creditcardsaddhandler controllers.CreditCardController.addCreditCardHandler
+GET /creditcardsupdate/:id controllers.CreditCardController.updateCreditCardForm(id: String)
+POST /creditcardsupdatehandler controllers.CreditCardController.updateCreditCardHandler
 POST /creditcards controllers.CreditCardController.addCreditCard
 PUT /creditcards/:id controllers.CreditCardController.updateRCreditCard(id: String)
 DELETE /creditcards/:id controllers.CreditCardController.deleteCreditCard(id: String)
 
-#Sale routers
+#OrderElements routers
 GET /orderelements controllers.OrderElementController.getOrderElements
+GET /orderelementsform controllers.OrderElementController.getOrderElementsForm
+GET /orderelementform/:id controllers.OrderElementController.getOrderElementForm(id: String)
 GET /orderelements/:id controllers.OrderElementController.getOrderElement(id: String)
+GET /orderelementsadd controllers.OrderElementController.addOrderElementForm
+POST /orderelementsaddhandler controllers.OrderElementController.addOrderElementHandler
+GET /orderelementsupdateform controllers.OrderElementController.updateOrderElementForm(id: String)
+POST /orderelementsupdatehandler controllers.OrderElementController.updateOrderElementHandler
 POST /orderelements controllers.OrderElementController.addOrderElement
 PUT /orderelements/:id controllers.OrderElementController.updateOrderElement(id: String)
 DELETE /orderelements/:id controllers.OrderElementController.deleteOrderElement(id: String)
 
 #Address routers
 GET /address controllers.AddressController.getAddresses
+GET /addressform controllers.AddressController.getAddressesForm
 GET /address/:id controllers.AddressController.getAddress(id: String)
+GET /addressform/:id controllers.AddressController.getAddressForm(id: String)
+GET /addressaddform controllers.AddressController.addAddressForm
+POST /addressaddhandler controllers.AddressController.addAddressHandler
+GET /addressupdateform/:id controllers.AddressController.updateAddressForm(id: String)
+POST /addressupdatehandler controllers.AddressController.updateAddressHandler
 POST /address controllers.AddressController.addAddress
 PUT /address/:id controllers.AddressController.updateAddress(id: String)
 DELETE /address/:id controllers.AddressController.deleteAddress(id: String)

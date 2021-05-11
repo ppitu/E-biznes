@@ -1,0 +1,6 @@
+@(orderelements: Seq[OrderElement])
+
+@for(orderelement <- orderelements) {
+    <b>@orderelement.id</b>
+    <b>@orderelement.product_id</b><br/>
+}

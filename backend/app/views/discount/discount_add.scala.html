@@ -7,20 +7,20 @@
 @form(routes.DiscountController.addDiscountHandler) {
     @helper.CSRF.formField
 
-    <select name="user" id="user">
+    <select name="user_id" id="user_id">
     @for(use <- user) {
         <option value="@use.id">@use.name</option>
     }
     </select>
 
-    <select name="product" id="product">
+    <select name="product_id" id="product_id">
     @for(pro <- product) {
         <option value="@pro.id">@pro.name</option>
     }
     </select>
 
     <div class="button">
-        <input type="submit" value="Add product">
+        <input type="submit" value="Add discount">
     </div>
 
 }

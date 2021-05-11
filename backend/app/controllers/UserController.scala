@@ -119,7 +119,7 @@ class UserController @Inject()(cc: MessagesControllerComponents, userRepository:
     })
   }
 
-  def updateCategoryHandler(): Action[AnyContent] = Action.async { implicit request =>
+  def updateUserHandler(): Action[AnyContent] = Action.async { implicit request =>
     _updateUserForm.bindFromRequest.fold(
       errorForm => {
         Future.successful(

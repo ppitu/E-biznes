@@ -1,0 +1,8 @@
+@(payments: Seq[Payment])
+
+@for(payment <- payments) {
+    <b>@payment.id</b>
+    <b>@payment.user_id</b>
+    <b>@payment.creditCard_id</b>
+    <b>@payment.date</b><br/>
+}

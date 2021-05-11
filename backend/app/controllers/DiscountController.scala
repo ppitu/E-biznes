@@ -130,7 +130,7 @@ class DiscountController @Inject()(cc: MessagesControllerComponents, discountRep
         )
       },
       discount => {
-        discountRepository.update(discount.id, Discount(product.id, discount.product_id, discount.user_id)).map { _ =>
+        discountRepository.update(discount.id, Discount(discount.id, discount.product_id, discount.user_id)).map { _ =>
           Redirect(routes.DiscountController.getDiscountsForm).flashing("success" -> "product updated")
         }
       }

@@ -1,15 +1,32 @@
 package controllers
 
 import akka.actor.ActorSystem
-import models.{Promotion, PromotionRepository}
+import models.{ProductRepository, Promotion, PromotionRepository, Product}
+import play.api.data.{Form, Forms}
+import play.api.data.Forms.{longNumber, mapping}
 import play.api.libs.json.{JsValue, Json}
 
 import javax.inject._
 import play.api.mvc._
 
-import scala.concurrent.{ExecutionContext, Future}
+import scala.concurrent.{ExecutionContext, Future }
 
-class PromotionController @Inject()(cc: ControllerComponents, promotionRepository: PromotionRepository, actorSystem: ActorSystem)(implicit exec: ExecutionContext) extends AbstractController(cc){
+class PromotionController @Inject()(cc: MessagesControllerComponents, promotionRepository: PromotionRepository, val productRepository: ProductRepository, actorSystem: ActorSystem)(implicit exec: ExecutionContext) extends MessagesAbstractController(cc){
+  val _promotionForm: Form[CreatePromotionForm] = Form {
+    mapping(
+      "product_id" -> longNumber
+    )(CreatePromotionForm.apply)(CreatePromotionForm.unapply)
+  }
+
+  val _updatePromotionForm: Form[UpdatePromotionForm] = Form {
+    mapping(
+      "id" -> longNumber,
+      "product_id" -> longNumber
+    )(UpdatePromotionForm.apply)(UpdatePromotionForm.unapply)
+  }
+
+
+
   def getPromotions: Action[AnyContent] = Action.async { implicit request =>
     val promotions = promotionRepository.list()
 
@@ -35,7 +52,7 @@ class PromotionController @Inject()(cc: ControllerComponents, promotionRepositor
           res =>
             Ok(Json.toJson(res))
         }
-    }.getOrElse(Future.successful(BadRequest("invalid json update promotion")))
+    }.getOrElse(Future.successful(BadRequest("invalid json update promotions")))
   }
 
   def deletePromotion(id: String): Action[AnyContent] = Action.async { implicit request =>
@@ -51,6 +68,72 @@ class PromotionController @Inject()(cc: ControllerComponents, promotionRepositor
           res =>
             Ok(Json.toJson(res))
         }
-    }.getOrElse(Future.successful(BadRequest("invalid json add promotion")))
+    }.getOrElse(Future.successful(BadRequest("invalid json add promotions")))
   }
+
+  def getPromotionsForm: Action[AnyContent] = Action.async { implicit request =>
+    val promotions = promotionRepository.list()
+    promotions.map { promotion => Ok(views.html.promotion.promotions(promotion))}
+  }
+
+  def getPromotionForm(id: String): Action[AnyContent] = Action.async {
+    val promotion = promotionRepository.getById(id.toLong)
+
+    promotion.map {
+      case promotion: Promotion => Ok(views.html.promotion.promotion(promotion))
+      case _ => Redirect(routes.PromotionController.getPromotionsForm)
+    }
+  }
+
+  def addPromotionForm(): Action[AnyContent] = Action.async { implicit request: MessagesRequest[AnyContent] =>
+    val products = productRepository.list()
+
+    products.map( product => Ok(views.html.promotion.promotion_add(_promotionForm, product)))
+  }
+
+  def addPromotionHandler(): Action[AnyContent] = Action.async { implicit request =>
+    _promotionForm.bindFromRequest.fold(
+      errorForm => {
+        Future.successful(
+          BadRequest("Error")
+        )
+      },
+      promotion => {
+        promotionRepository.create(promotion.product_id).map { _ =>
+          Redirect(routes.PromotionController.getPromotionsForm).flashing("success" -> "category.created")
+        }
+      }
+    )
+  }
+
+  val _productList: Seq[Product] = Seq[Product]()
+
+  def updatePromotionForm(id: String): Action[AnyContent] = Action.async { implicit request: MessagesRequest[AnyContent] =>
+    val promotion = promotionRepository.getById(id.toLong)
+
+    promotion.map(promotion => {
+      val proForm = _updatePromotionForm.fill(UpdatePromotionForm(promotion.id, promotion.product_id))
+
+      Ok(views.html.promotion.promotion_update(proForm, _productList))
+    })
+  }
+
+  def updatePromotionHandler(): Action[AnyContent] = Action.async { implicit request =>
+    _updatePromotionForm.bindFromRequest.fold(
+      errorForm => {
+        Future.successful(
+          BadRequest("Error")
+        )
+      },
+      promotion => {
+        promotionRepository.update(promotion.id, Promotion(promotion.id, promotion.product_id)).map { _ =>
+          Redirect(routes.PromotionController.getPromotionsForm).flashing("success" -> "product updated")
+        }
+      }
+    )
+  }
+
 }
+
+case class CreatePromotionForm(product_id: Long)
+case class UpdatePromotionForm(id: Long, product_id: Long)

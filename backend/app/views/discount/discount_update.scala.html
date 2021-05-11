@@ -5,11 +5,11 @@
 
 @flash.get("success").getOrElse("")
 
-@form(routes.ProductController.updateProductHandler) {
+@form(routes.DiscountController.updateDiscountHandler) {
     @helper.CSRF.formField
     <input name="id" id="id" value="@discount("id").value" type="hidden" />
 
-    <select name="user" id="user">
+    <select name="user_id" id="user_id">
     @for(use <- user){
         @if(use.id.toString==discount("user_id").value.getOrElse(0)) {
             <option value="@use.id" selected>@use.name</option>
@@ -20,7 +20,7 @@
     }
     </select>
 
-    <select name="product" id="product">
+    <select name="product_id" id="product_id">
     @for(pro <- product){
         @if(pro.id.toString==discount("product_id").value.getOrElse(0)) {
             <option value="@pro.id" selected>@pro.name</option>

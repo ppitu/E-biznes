@@ -119,20 +119,20 @@ class OrderController @Inject()(cc: MessagesControllerComponents, orderRepositor
     order.map(order => {
       val ordForm = _updateOrderForm.fill(UpdateOrderForm(order.id, order.user_id, order.amount, order.date))
 
-      Ok(views.html.discount.discount_update(disForm, _userList, _productList))
+      Ok(views.html.order.order_update(ordForm, _userList))
     })
   }
 
   def updateProductHandler(): Action[AnyContent] = Action.async { implicit request =>
-    _updateDiscountForm.bindFromRequest.fold(
+    _updateOrderForm.bindFromRequest.fold(
       errorForm => {
         Future.successful(
           BadRequest("Error")
         )
       },
-      discount => {
-        discountRepository.update(discount.id, Discount(product.id, discount.product_id, discount.user_id)).map { _ =>
-          Redirect(routes.DiscountController.getDiscountsForm).flashing("success" -> "product updated")
+      order => {
+        orderRepository.update(order.id, Order(order.id, order.user_id, order.amount, order.date)).map { _ =>
+          Redirect(routes.OrderController.getOrdersForm).flashing("success" -> "product updated")
         }
       }
     )
