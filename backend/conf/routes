@@ -5,9 +5,15 @@
 
 #User routers
 GET /users controllers.UserController.getUsers
+GET /usersform controllers.UserController.getUsersForm
 GET /users/:id controllers.UserController.getUser(id: String)
+GET /usersform/:id controllers.UserController.getUserForm(id: String)
+GET /usersadd controllers.UserController.addUserForm
+POST /usersaddhandler controllers.UserController.addUserHandler
 POST /users controllers.UserController.addUser
 PUT /users/:id controllers.UserController.updateUser(id: String)
+GET /usersupdate/:id controllers.UserController.updateUserForm(id: String)
+POST /isersupdatehandler controllers.UserController.updateUserHandler
 DELETE /users/:id controllers.UserController.deleteUser(id: String)
 
 #Product routers
@@ -38,7 +44,13 @@ DELETE /categories/:id controllers.CategoryController.deleteCategory(id: String)
 
 #Discount routers
 GET /discount controllers.DiscountController.getDiscounts
+GET /discountsform controllers.DiscountController.getDiscountsForm
 GET /discount/:id controllers.DiscountController.getDiscount(id: String)
+GET /discountform/:id controllers.DiscountController.getDiscountForm(id: String)
+GET /discountadd controllers.DiscountController.addDiscountForm
+POST /discountaddhandler controllers.DiscountController.addDiscountHandler
+GET /discountupdate controllers.DiscountController.updateDiscountForm(id: String)
+POST /discountupdatehandler controllers.DiscountController.updateDiscountHandler
 POST /discount controllers.DiscountController.addDiscount
 PUT /discount/:id controllers.DiscountController.updateDiscount(id: String)
 DELETE /discount/:id controllers.DiscountController.deleteDiscount(id: String)

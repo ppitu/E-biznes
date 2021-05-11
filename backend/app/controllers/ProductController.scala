@@ -1,15 +1,15 @@
 package controllers
 
 import akka.actor.ActorSystem
-import models.{Category, CategoryRepository, Product, ProductRepository}
+import models.{Category, CategoryRepository, Product, ProductRepository, User}
 import play.api.data.Form
 import play.api.data.Forms.{longNumber, mapping, nonEmptyText, number}
 import play.api.libs.json.Format.GenericFormat
 import play.api.libs.json.OFormat.oFormatFromReadsAndOWrites
 import play.api.libs.json.{JsValue, Json}
 import play.api.mvc.{AbstractController, Action, AnyContent, ControllerComponents, MessagesAbstractController, MessagesControllerComponents, MessagesRequest}
-
 import javax.inject.{Inject, Singleton}
+
 import scala.concurrent.{ExecutionContext, Future, promise}
 import scala.util.{Failure, Success}
 
