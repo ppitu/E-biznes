@@ -25,7 +25,7 @@ class ProductRepository @Inject()(dbConfigProvider: DatabaseConfigProvider, val 
 
     def categoryId = column[Long]("category_id")
 
-    def category_fk = foreignKey("cat_fk", categoryId, category_)(_.id)
+    def categoryFk = foreignKey("cat_fk", categoryId, category_)(_.id)
 
     def createdAt: Rep[Timestamp] = column[Timestamp]("created_at")
 

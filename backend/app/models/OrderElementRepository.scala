@@ -21,7 +21,7 @@ class OrderElementRepository @Inject()(val dbConfigProvider: DatabaseConfigProvi
 
     def productId = column[Long]("product_id")
 
-    def product_fk = foreignKey("product_fk", productId, product_)(_.id)
+    def productFk = foreignKey("product_fk", productId, product_)(_.id)
 
     def createdAt: Rep[Timestamp] = column[Timestamp]("created_at")
 

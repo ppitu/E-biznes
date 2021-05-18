@@ -23,9 +23,9 @@ class DiscountRepository @Inject()(val dbConfigProvider: DatabaseConfigProvider,
 
     def userId = column[Long]("user_id")
 
-    def product_fk = foreignKey("prod_fk", productId, product_)(_.id)
+    def productFk = foreignKey("prod_fk", productId, product_)(_.id)
 
-    def user_fk = foreignKey("user_fk", userId, user_)(_.id)
+    def userFk = foreignKey("user_fk", userId, user_)(_.id)
 
     def createdAt: Rep[Timestamp] = column[Timestamp]("created_at")
 
@@ -44,7 +44,7 @@ class DiscountRepository @Inject()(val dbConfigProvider: DatabaseConfigProvider,
   def create(productId: Long, userId: Long, createdAt: Timestamp = Timestamp.from(Instant.now()), updatedAt: Timestamp = Timestamp.from(Instant.now())): Future[Discount] = db.run {
     (discount_.map(d => (d.productId, d.userId, d.createdAt, d.updatedAt))
       returning discount_.map(_.id)
-      into {case ((product_id, user_id, createdAt, updatedAt), id) => Discount(id, product_id, user_id, createdAt, updatedAt)}
+      into {case ((productId, userId, createdAt, updatedAt), id) => Discount(id, productId, userId, createdAt, updatedAt)}
       ) += (productId, userId, createdAt, updatedAt)
   }
 

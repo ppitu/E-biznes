@@ -19,7 +19,7 @@ class PromotionRepository @Inject()(dbConfigProvider: DatabaseConfigProvider, pr
 
     def productId = column[Long]("product_id", O.Unique)
 
-    def product_fk = foreignKey("product_fk", productId, product_)(_.id)
+    def productFk = foreignKey("product_fk", productId, product_)(_.id)
 
     def createdAt: Rep[Timestamp] = column[Timestamp]("created_at")
 

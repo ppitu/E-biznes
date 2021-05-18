@@ -19,7 +19,7 @@ class CreditCardRepository @Inject()(dbConfigProvider: DatabaseConfigProvider)(i
   class CreditCardTable(tag: Tag) extends Table[CreditCard](tag, "credit_card") {
     def id = column[Long]("id", O.PrimaryKey, O.AutoInc)
 
-    def holder_name = column[String]("holder_name", O.Unique)
+    def holderName = column[String]("holder_name", O.Unique)
 
     def number = column[Long]("number")
 
@@ -31,17 +31,17 @@ class CreditCardRepository @Inject()(dbConfigProvider: DatabaseConfigProvider)(i
 
     def updatedAt: Rep[Timestamp] = column[Timestamp]("updated_at")
 
-    def * = (id, holder_name, number, cvv, date, createdAt, updatedAt) <> ((CreditCard.apply _).tupled, CreditCard.unapply)
+    def * = (id, holderName, number, cvv, date, createdAt, updatedAt) <> ((CreditCard.apply _).tupled, CreditCard.unapply)
   }
 
 
   private val creditCard_ = TableQuery[CreditCardTable]
 
-  def create(holder_name: String, number: Long, cvv: Long, date: String, createdAt: Timestamp = Timestamp.from(Instant.now()), updatedAt: Timestamp = Timestamp.from(Instant.now())): Future[CreditCard] = db.run {
-    (creditCard_.map(c => (c.holder_name, c.number, c.cvv, c.date, c.createdAt, c.updatedAt))
+  def create(holderName: String, number: Long, cvv: Long, date: String, createdAt: Timestamp = Timestamp.from(Instant.now()), updatedAt: Timestamp = Timestamp.from(Instant.now())): Future[CreditCard] = db.run {
+    (creditCard_.map(c => (c.holderName, c.number, c.cvv, c.date, c.createdAt, c.updatedAt))
       returning creditCard_.map(_.id)
-      into {case ((holder_name, number, cvv, date, createdAt, updatedAt), id) => CreditCard(id, holder_name, number, cvv, date, createdAt, updatedAt)}
-      ) += (holder_name, number, cvv, date, createdAt, updatedAt)
+      into {case ((holderName, number, cvv, date, createdAt, updatedAt), id) => CreditCard(id, holderName, number, cvv, date, createdAt, updatedAt)}
+      ) += (holderName, number, cvv, date, createdAt, updatedAt)
   }
 
   def list(): Future[Seq[CreditCard]] = db.run {

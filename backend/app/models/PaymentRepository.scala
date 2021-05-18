@@ -25,9 +25,9 @@ class PaymentRepository @Inject()(dbConfigProvider: DatabaseConfigProvider, val 
 
     def date = column[String]("date")
 
-    def user_fk = foreignKey("user_fk", userId, user_)(_.id)
+    def userFk = foreignKey("user_fk", userId, user_)(_.id)
 
-    def creditCard_fk = foreignKey("cred_fk", creditCardId, creditCard_)(_.id)
+    def creditCardFk = foreignKey("cred_fk", creditCardId, creditCard_)(_.id)
 
     def createdAt: Rep[Timestamp] = column[Timestamp]("created_at")
 
