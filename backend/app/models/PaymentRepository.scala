@@ -43,11 +43,11 @@ class PaymentRepository @Inject()(dbConfigProvider: DatabaseConfigProvider, val 
   private val creditCard_ = TableQuery[CreditCardTable]
   private val payment_ = TableQuery[PaymentTable]
 
-  def create(user_id: Long, creditCardId: Long, date: String, createdAt: Timestamp = Timestamp.from(Instant.now()), updatedAt: Timestamp = Timestamp.from(Instant.now())): Future[Payment] = db.run {
+  def create(userId: Long, creditCardId: Long, date: String, createdAt: Timestamp = Timestamp.from(Instant.now()), updatedAt: Timestamp = Timestamp.from(Instant.now())): Future[Payment] = db.run {
     (payment_.map(p => (p.userId, p.creditCardId, p.date, p.createdAt, p.updatedAt))
       returning payment_.map(_.id)
       into {case ((userId, creditCardId, date, createdAt, updatedAt), id) => Payment(id, userId, creditCardId, date, createdAt, updatedAt)}
-      ) += (user_id, creditCardId, date, createdAt, updatedAt)
+      ) += (userId, creditCardId, date, createdAt, updatedAt)
   }
 
   def list(): Future[Seq[Payment]] = db.run {

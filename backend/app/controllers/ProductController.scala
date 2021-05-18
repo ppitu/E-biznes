@@ -83,7 +83,7 @@ class ProductController @Inject()(cc: MessagesControllerComponents, val category
   def addProduct(): Action[JsValue] = Action.async(parse.json) { request =>
     request.body.validate[Product].map {
       product => {
-        productRepository.create(product.name, product.description, product.category_id).map {
+        productRepository.create(product.name, product.description, product.categoryId).map {
           res =>
             Ok(Json.toJson(res))
         }
@@ -121,7 +121,7 @@ class ProductController @Inject()(cc: MessagesControllerComponents, val category
     val product = productRepository.getById(id.toLong)
 
     product.map(product => {
-      val prodForm = _updateProductForm.fill(UpdateProductForm(product.id, product.name, product.description, product.category_id))
+      val prodForm = _updateProductForm.fill(UpdateProductForm(product.id, product.name, product.description, product.categoryId))
 
       Ok(views.html.product.products_update(prodForm, categ))
     })
