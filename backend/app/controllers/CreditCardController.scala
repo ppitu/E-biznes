@@ -103,7 +103,7 @@ class CreditCardController @Inject()(cc: MessagesControllerComponents, creditCar
         )
       },
       creditCard => {
-        creditCardRepository.create(creditCard.holder_name, creditCard.number, creditCard.cvv, creditCard.date).map { _ =>
+        creditCardRepository.create(creditCard.holderName, creditCard.number, creditCard.cvv, creditCard.date).map { _ =>
           Redirect(routes.CreditCardController.getCreditCardsForm).flashing("success" -> "category.created")
         }
       }
@@ -128,7 +128,7 @@ class CreditCardController @Inject()(cc: MessagesControllerComponents, creditCar
         )
       },
       creditCard => {
-        creditCardRepository.update(creditCard.id, CreditCard(creditCard.id, creditCard.holder_name, creditCard.number, creditCard.cvv, creditCard.date)).map { _ =>
+        creditCardRepository.update(creditCard.id, CreditCard(creditCard.id, creditCard.holderName, creditCard.number, creditCard.cvv, creditCard.date)).map { _ =>
           Redirect(routes.CreditCardController.getCreditCardsForm).flashing("success" -> "product updated")
         }
       }
@@ -137,5 +137,5 @@ class CreditCardController @Inject()(cc: MessagesControllerComponents, creditCar
 
 }
 
-case class CreateCreditCardForm(holder_name: String, number: Long, cvv: Long, date: String)
-case class UpdateCreditCardForm(id: Long, holder_name: String, number: Long, cvv: Long, date: String)
+case class CreateCreditCardForm(holderName: String, number: Long, cvv: Long, date: String)
+case class UpdateCreditCardForm(id: Long, holderName: String, number: Long, cvv: Long, date: String)

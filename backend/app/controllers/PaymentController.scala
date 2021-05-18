@@ -103,7 +103,7 @@ class PaymentController @Inject()(cc: MessagesControllerComponents, paymentRepos
         )
       },
       payment => {
-        paymentRepository.create(payment.user_id, payment.creditCard_id, payment.date).map { _ =>
+        paymentRepository.create(payment.userId, payment.creditCardId, payment.date).map { _ =>
           Redirect(routes.PaymentController.getPaymentsForm).flashing("success" -> "category.created")
         }
       }
@@ -131,7 +131,7 @@ class PaymentController @Inject()(cc: MessagesControllerComponents, paymentRepos
         )
       },
       payment => {
-        paymentRepository.update(payment.id, Payment(payment.id, payment.user_id, payment.creditCard_id, payment.date)).map { _ =>
+        paymentRepository.update(payment.id, Payment(payment.id, payment.userId, payment.creditCardId, payment.date)).map { _ =>
           Redirect(routes.PaymentController.getPaymentsForm).flashing("success" -> "product updated")
         }
       }
@@ -141,5 +141,5 @@ class PaymentController @Inject()(cc: MessagesControllerComponents, paymentRepos
 
 }
 
-case class CreatePaymentForm(user_id: Long, creditCard_id: Long, date: String)
-case class UpdatePaymentForm(id: Long, user_id: Long, creditCard_id: Long, date: String)
+case class CreatePaymentForm(userId: Long, creditCardId: Long, date: String)
+case class UpdatePaymentForm(id: Long, userId: Long, creditCardId: Long, date: String)

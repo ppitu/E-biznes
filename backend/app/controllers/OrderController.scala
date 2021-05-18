@@ -104,7 +104,7 @@ class OrderController @Inject()(cc: MessagesControllerComponents, orderRepositor
         )
       },
       order => {
-        orderRepository.create(order.user_id, order.amount, order.date).map { _ =>
+        orderRepository.create(order.userId, order.amount, order.date).map { _ =>
           Redirect(routes.OrderController.getOrdersForm).flashing("success" -> "category.created")
         }
       }
@@ -131,7 +131,7 @@ class OrderController @Inject()(cc: MessagesControllerComponents, orderRepositor
         )
       },
       order => {
-        orderRepository.update(order.id, Order(order.id, order.user_id, order.amount, order.date)).map { _ =>
+        orderRepository.update(order.id, Order(order.id, order.userId, order.amount, order.date)).map { _ =>
           Redirect(routes.OrderController.getOrdersForm).flashing("success" -> "product updated")
         }
       }
@@ -141,5 +141,5 @@ class OrderController @Inject()(cc: MessagesControllerComponents, orderRepositor
 
 }
 
-case class CreateOrderForm(user_id: Long, amount: Float, date: String)
-case class UpdateOrderForm(id: Long, user_id: Long, amount: Float, date: String)
+case class CreateOrderForm(userId: Long, amount: Float, date: String)
+case class UpdateOrderForm(id: Long, userId: Long, amount: Float, date: String)

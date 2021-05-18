@@ -4,6 +4,7 @@ import models.{Category, CategoryRepository}
 import play.api.Logger
 import play.api.data.Form
 import play.api.data.Forms.{longNumber, mapping, nonEmptyText}
+import play.api.http.HeaderNames
 import play.api.libs.json.{JsValue, Json}
 
 import javax.inject._
@@ -105,7 +106,6 @@ class CategoryController @Inject()(cc: MessagesControllerComponents, val categor
     categoryRepository.delete(id.toLong).map { res =>
       Ok(Json.toJson(res))
     }
-    //Redirect(routes.CategoryController.getCategories)
   }
 
   def addCategory(): Action[JsValue] = Action.async(parse.json) { implicit request => //messagesActionBuilder { implicit request: MessagesRequest[AnyContent] =>

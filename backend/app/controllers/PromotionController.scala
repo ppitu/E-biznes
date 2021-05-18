@@ -99,7 +99,7 @@ class PromotionController @Inject()(cc: MessagesControllerComponents, promotionR
         )
       },
       promotion => {
-        promotionRepository.create(promotion.product_id).map { _ =>
+        promotionRepository.create(promotion.productId).map { _ =>
           Redirect(routes.PromotionController.getPromotionsForm).flashing("success" -> "category.created")
         }
       }
@@ -126,7 +126,7 @@ class PromotionController @Inject()(cc: MessagesControllerComponents, promotionR
         )
       },
       promotion => {
-        promotionRepository.update(promotion.id, Promotion(promotion.id, promotion.product_id)).map { _ =>
+        promotionRepository.update(promotion.id, Promotion(promotion.id, promotion.productId)).map { _ =>
           Redirect(routes.PromotionController.getPromotionsForm).flashing("success" -> "product updated")
         }
       }
@@ -135,5 +135,5 @@ class PromotionController @Inject()(cc: MessagesControllerComponents, promotionR
 
 }
 
-case class CreatePromotionForm(product_id: Long)
-case class UpdatePromotionForm(id: Long, product_id: Long)
+case class CreatePromotionForm(productId: Long)
+case class UpdatePromotionForm(id: Long, productId: Long)

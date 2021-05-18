@@ -102,7 +102,7 @@ class DiscountController @Inject()(cc: MessagesControllerComponents, discountRep
         )
       },
       discount => {
-        discountRepository.create(discount.product_id, discount.user_id).map { _ =>
+        discountRepository.create(discount.productId, discount.userId).map { _ =>
           Redirect(routes.DiscountController.getDiscountsForm).flashing("success" -> "category.created")
         }
       }
@@ -130,7 +130,7 @@ class DiscountController @Inject()(cc: MessagesControllerComponents, discountRep
         )
       },
       discount => {
-        discountRepository.update(discount.id, Discount(discount.id, discount.product_id, discount.user_id)).map { _ =>
+        discountRepository.update(discount.id, Discount(discount.id, discount.productId, discount.userId)).map { _ =>
           Redirect(routes.DiscountController.getDiscountsForm).flashing("success" -> "product updated")
         }
       }
@@ -139,5 +139,5 @@ class DiscountController @Inject()(cc: MessagesControllerComponents, discountRep
 
 }
 
-case class CreateDiscountForm(product_id: Long, user_id: Long)
-case class UpdateDiscountForm(id: Long, product_id: Long, user_id: Long)
+case class CreateDiscountForm(productId: Long, userId: Long)
+case class UpdateDiscountForm(id: Long, productId: Long, userId: Long)

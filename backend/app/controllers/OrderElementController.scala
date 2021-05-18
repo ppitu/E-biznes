@@ -99,7 +99,7 @@ class OrderElementController @Inject()(cc: MessagesControllerComponents, orderEl
         )
       },
       orderelement => {
-        orderElementRepository.create(orderelement.product_id).map { _ =>
+        orderElementRepository.create(orderelement.productId).map { _ =>
           Redirect(routes.OrderElementController.getOrderElementsForm).flashing("success" -> "category.created")
         }
       }
@@ -126,7 +126,7 @@ class OrderElementController @Inject()(cc: MessagesControllerComponents, orderEl
         )
       },
       orderelement => {
-        orderElementRepository.update(orderelement.id, OrderElement(orderelement.id, orderelement.product_id)).map { _ =>
+        orderElementRepository.update(orderelement.id, OrderElement(orderelement.id, orderelement.productId)).map { _ =>
           Redirect(routes.OrderElementController.getOrderElementsForm).flashing("success" -> "product updated")
         }
       }
@@ -134,5 +134,5 @@ class OrderElementController @Inject()(cc: MessagesControllerComponents, orderEl
   }
 }
 
-case class CreateOrderElementForm(product_id: Long)
-case class UpdateOrderElementForm(id: Long, product_id: Long)
+case class CreateOrderElementForm(productId: Long)
+case class UpdateOrderElementForm(id: Long, productId: Long)
