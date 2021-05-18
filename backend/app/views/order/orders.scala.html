@@ -1,8 +1,8 @@
 @(orders: Seq[Order])
 
 @for(order <- orders) {
-    <b>@order.id</b>
-    <b>@order.user_id</b>
-    <b>@order.amount</b>
-    <b>@order.date</b><br/>
+    <strong>@order.id</strong>
+    <strong>@order.user_id</strong>
+    <strong>@order.amount</strong>
+    <strong>@order.date</strong><br/>
 }

@@ -1,9 +1,9 @@
 @(creditcards: Seq[CreditCard])
 
 @for(creditcard <- creditcards) {
-    <b>@creditcard.id</b>
-    <b>@creditcard.holder_name</b>
-    <b>@creditcard.number</b>
-    <b>@creditcard.cvv</b>
-    <b>@creditcard.date</b><br/>
+    <strong>@creditcard.id</strong>
+    <strong>@creditcard.holder_name</strong>
+    <strong>@creditcard.number</strong>
+    <strong>@creditcard.cvv</strong>
+    <strong>@creditcard.date</strong><br/>
 }
