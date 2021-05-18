@@ -23,15 +23,15 @@ class ProductRepository @Inject()(dbConfigProvider: DatabaseConfigProvider, val 
 
     def description = column[String]("description")
 
-    def category_id = column[Long]("category_id")
+    def categoryId = column[Long]("category_id")
 
-    def category_fk = foreignKey("cat_fk", category_id, category_)(_.id)
+    def category_fk = foreignKey("cat_fk", categoryId, category_)(_.id)
 
     def createdAt: Rep[Timestamp] = column[Timestamp]("created_at")
 
     def updatedAt: Rep[Timestamp] = column[Timestamp]("updated_at")
 
-    def * = (id, name, description, category_id, createdAt, updatedAt) <> ((Product.apply _).tupled, Product.unapply)
+    def * = (id, name, description, categoryId, createdAt, updatedAt) <> ((Product.apply _).tupled, Product.unapply)
   }
 
   import categoryRepository.CategoryTable
@@ -39,11 +39,11 @@ class ProductRepository @Inject()(dbConfigProvider: DatabaseConfigProvider, val 
   private val product_ = TableQuery[ProductTable]
   private val category_ = TableQuery[CategoryTable]
 
-  def create(name: String, description: String, category_id: Long, createdAt: Timestamp = Timestamp.from(Instant.now()), updatedAt: Timestamp = Timestamp.from(Instant.now())): Future[Product] = db.run {
-    (product_.map(p => (p.name, p.description, p.category_id, p.createdAt, p.updatedAt))
+  def create(name: String, description: String, categoryId: Long, createdAt: Timestamp = Timestamp.from(Instant.now()), updatedAt: Timestamp = Timestamp.from(Instant.now())): Future[Product] = db.run {
+    (product_.map(p => (p.name, p.description, p.categoryId, p.createdAt, p.updatedAt))
       returning product_.map(_.id)
-      into {case ((name, description, category_id, createdAt, updatedAt), id) => Product(id, name, description, category_id, createdAt, updatedAt)}
-      ) += (name, description, category_id, createdAt, updatedAt)
+      into {case ((name, description, categoryId, createdAt, updatedAt), id) => Product(id, name, description, categoryId, createdAt, updatedAt)}
+      ) += (name, description, categoryId, createdAt, updatedAt)
   }
 
   def list(): Future[Seq[Product]] = db.run {
@@ -56,8 +56,8 @@ class ProductRepository @Inject()(dbConfigProvider: DatabaseConfigProvider, val 
 
   def delete(id: Long): Future[Int] = db.run(product_.filter(_.id === id).delete)
 
-  def update(id: Long, new_product: Product): Future[Int] = {
-    val productToUpdate: Product = new_product.copy(id)
+  def update(id: Long, newProduct: Product): Future[Int] = {
+    val productToUpdate: Product = newProduct.copy(id)
     db.run(product_.filter(_.id === id).update(productToUpdate))
   }
 }

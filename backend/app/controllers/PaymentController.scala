@@ -67,7 +67,7 @@ class PaymentController @Inject()(cc: MessagesControllerComponents, paymentRepos
   def addPayment(): Action[JsValue] = Action.async(parse.json) { implicit request =>
     request.body.validate[Payment].map {
       payment =>
-        paymentRepository.create(payment.user_id, payment.creditCard_id, payment.date).map {
+        paymentRepository.create(payment.userId, payment.creditCardId, payment.date).map {
           res =>
             Ok(Json.toJson(res))
         }
@@ -117,7 +117,7 @@ class PaymentController @Inject()(cc: MessagesControllerComponents, paymentRepos
     val payment = paymentRepository.getById(id.toLong)
 
     payment.map(payment => {
-      val payForm = _updatePaymentForm.fill(UpdatePaymentForm(payment.id, payment.user_id, payment.creditCard_id, payment.date))
+      val payForm = _updatePaymentForm.fill(UpdatePaymentForm(payment.id, payment.userId, payment.creditCardId, payment.date))
 
       Ok(views.html.payment.payment_update(payForm, _userList, _creditCardList))
     })

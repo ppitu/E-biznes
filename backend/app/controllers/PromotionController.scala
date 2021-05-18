@@ -64,7 +64,7 @@ class PromotionController @Inject()(cc: MessagesControllerComponents, promotionR
   def addPromotion(): Action[JsValue] = Action.async(parse.json) { implicit request =>
     request.body.validate[Promotion].map {
       promotion =>
-        promotionRepository.create(promotion.product_id).map {
+        promotionRepository.create(promotion.productId).map {
           res =>
             Ok(Json.toJson(res))
         }
@@ -112,7 +112,7 @@ class PromotionController @Inject()(cc: MessagesControllerComponents, promotionR
     val promotion = promotionRepository.getById(id.toLong)
 
     promotion.map(promotion => {
-      val proForm = _updatePromotionForm.fill(UpdatePromotionForm(promotion.id, promotion.product_id))
+      val proForm = _updatePromotionForm.fill(UpdatePromotionForm(promotion.id, promotion.productId))
 
       Ok(views.html.promotion.promotion_update(proForm, _productList))
     })

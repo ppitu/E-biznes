@@ -19,21 +19,21 @@ class PaymentRepository @Inject()(dbConfigProvider: DatabaseConfigProvider, val 
   class PaymentTable(tag: Tag) extends Table[Payment](tag, "payment") {
     def id = column[Long]("id", O.PrimaryKey, O.AutoInc)
 
-    def user_id = column[Long]("user_id")
+    def userId = column[Long]("user_id")
 
-    def creditCard_id = column[Long]("credit_card_id")
+    def creditCardId = column[Long]("credit_card_id")
 
     def date = column[String]("date")
 
-    def user_fk = foreignKey("user_fk", user_id, user_)(_.id)
+    def user_fk = foreignKey("user_fk", userId, user_)(_.id)
 
-    def creditCard_fk = foreignKey("cred_fk", creditCard_id, creditCard_)(_.id)
+    def creditCard_fk = foreignKey("cred_fk", creditCardId, creditCard_)(_.id)
 
     def createdAt: Rep[Timestamp] = column[Timestamp]("created_at")
 
     def updatedAt: Rep[Timestamp] = column[Timestamp]("updated_at")
 
-    def * = (id, user_id, creditCard_id, date, createdAt, updatedAt) <> ((Payment.apply _).tupled, Payment.unapply)
+    def * = (id, userId, creditCardId, date, createdAt, updatedAt) <> ((Payment.apply _).tupled, Payment.unapply)
   }
 
   import userRepository.UserTable
@@ -43,11 +43,11 @@ class PaymentRepository @Inject()(dbConfigProvider: DatabaseConfigProvider, val 
   private val creditCard_ = TableQuery[CreditCardTable]
   private val payment_ = TableQuery[PaymentTable]
 
-  def create(user_id: Long, creditCard_id: Long, date: String, createdAt: Timestamp = Timestamp.from(Instant.now()), updatedAt: Timestamp = Timestamp.from(Instant.now())): Future[Payment] = db.run {
-    (payment_.map(p => (p.user_id, p.creditCard_id, p.date, p.createdAt, p.updatedAt))
+  def create(user_id: Long, creditCardId: Long, date: String, createdAt: Timestamp = Timestamp.from(Instant.now()), updatedAt: Timestamp = Timestamp.from(Instant.now())): Future[Payment] = db.run {
+    (payment_.map(p => (p.userId, p.creditCardId, p.date, p.createdAt, p.updatedAt))
       returning payment_.map(_.id)
-      into {case ((user_id, creditCard_id, date, createdAt, updatedAt), id) => Payment(id, user_id, creditCard_id, date, createdAt, updatedAt)}
-      ) += (user_id, creditCard_id, date, createdAt, updatedAt)
+      into {case ((userId, creditCardId, date, createdAt, updatedAt), id) => Payment(id, userId, creditCardId, date, createdAt, updatedAt)}
+      ) += (user_id, creditCardId, date, createdAt, updatedAt)
   }
 
   def list(): Future[Seq[Payment]] = db.run {
@@ -60,8 +60,8 @@ class PaymentRepository @Inject()(dbConfigProvider: DatabaseConfigProvider, val 
 
   def delete(id: Long): Future[Int] = db.run(payment_.filter(_.id === id).delete)
 
-  def update(id: Long, new_payment: Payment): Future[Int] = {
-    val paymentToUpdate: Payment = new_payment.copy(id)
+  def update(id: Long, newPayment: Payment): Future[Int] = {
+    val paymentToUpdate: Payment = newPayment.copy(id)
     db.run(payment_.filter(_.id === id).update(paymentToUpdate))
   }
 }

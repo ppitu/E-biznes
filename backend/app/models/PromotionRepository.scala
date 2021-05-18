@@ -17,15 +17,15 @@ class PromotionRepository @Inject()(dbConfigProvider: DatabaseConfigProvider, pr
   private class PromotionTable(tag: Tag) extends Table[Promotion](tag, "promotion") {
     def id = column[Long]("id", O.PrimaryKey, O.AutoInc)
 
-    def product_id = column[Long]("product_id", O.Unique)
+    def productId = column[Long]("product_id", O.Unique)
 
-    def product_fk = foreignKey("product_fk", product_id, product_)(_.id)
+    def product_fk = foreignKey("product_fk", productId, product_)(_.id)
 
     def createdAt: Rep[Timestamp] = column[Timestamp]("created_at")
 
     def updatedAt: Rep[Timestamp] = column[Timestamp]("updated_at")
 
-    def * = (id, product_id, createdAt, updatedAt) <> ((Promotion.apply _).tupled, Promotion.unapply)
+    def * = (id, productId, createdAt, updatedAt) <> ((Promotion.apply _).tupled, Promotion.unapply)
   }
 
   import productRepository.ProductTable
@@ -33,11 +33,11 @@ class PromotionRepository @Inject()(dbConfigProvider: DatabaseConfigProvider, pr
   private val product_ = TableQuery[ProductTable]
   private val promotion_ = TableQuery[PromotionTable]
 
-  def create(product_id: Long, createdAt: Timestamp = Timestamp.from(Instant.now()), updatedAt: Timestamp = Timestamp.from(Instant.now())): Future[Promotion] = db.run {
-    (promotion_.map(p => (p.product_id, p.createdAt, p.updatedAt))
+  def create(productId: Long, createdAt: Timestamp = Timestamp.from(Instant.now()), updatedAt: Timestamp = Timestamp.from(Instant.now())): Future[Promotion] = db.run {
+    (promotion_.map(p => (p.productId, p.createdAt, p.updatedAt))
       returning promotion_.map(_.id)
-      into {case ((product_id, createdAt, updatedAt), id) => Promotion(id, product_id, createdAt, updatedAt)}
-      ) += (product_id, createdAt, updatedAt)
+      into {case ((productId, createdAt, updatedAt), id) => Promotion(id, productId, createdAt, updatedAt)}
+      ) += (productId, createdAt, updatedAt)
   }
 
   def list(): Future[Seq[Promotion]] = db.run {
@@ -50,8 +50,8 @@ class PromotionRepository @Inject()(dbConfigProvider: DatabaseConfigProvider, pr
 
   def delete(id: Long): Future[Int] = db.run(promotion_.filter(_.id === id).delete)
 
-  def update(id: Long, new_promotion: Promotion): Future[Int] = {
-    val promotionToUpdate: Promotion = new_promotion.copy(id)
+  def update(id: Long, newPromotion: Promotion): Future[Int] = {
+    val promotionToUpdate: Promotion = newPromotion.copy(id)
     db.run(promotion_.filter(_.id === id).update(promotionToUpdate))
   }
 }

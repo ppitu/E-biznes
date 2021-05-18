@@ -66,7 +66,7 @@ class DiscountController @Inject()(cc: MessagesControllerComponents, discountRep
   def addDiscount(): Action[JsValue] = Action.async(parse.json) { implicit  request =>
     request.body.validate[Discount].map {
       discount =>
-        discountRepository.create(discount.product_id, discount.user_id).map {
+        discountRepository.create(discount.productId, discount.userId).map {
           res =>
             Ok(Json.toJson(res))
         }
@@ -116,7 +116,7 @@ class DiscountController @Inject()(cc: MessagesControllerComponents, discountRep
     val discount = discountRepository.getById(id.toLong)
 
     discount.map(discount => {
-      val disForm = _updateDiscountForm.fill(UpdateDiscountForm(discount.id, discount.product_id, discount.user_id))
+      val disForm = _updateDiscountForm.fill(UpdateDiscountForm(discount.id, discount.productId, discount.userId))
 
       Ok(views.html.discount.discount_update(disForm, _userList, _productList))
     })

@@ -113,7 +113,7 @@ class ProductController @Inject()(cc: MessagesControllerComponents, val category
 
   def updateProductForm(id: String): Action[AnyContent] = Action.async { implicit request: MessagesRequest[AnyContent] =>
     var categ:Seq[Category] = Seq[Category]()
-    val categories: Unit = categoryRepository.list().onComplete{
+    categoryRepository.list().onComplete{
       case Success(cat) => categ = cat
       case Failure(_) => print("fail")
     }

@@ -64,7 +64,7 @@ class OrderElementController @Inject()(cc: MessagesControllerComponents, orderEl
   def addOrderElement(): Action[JsValue] = Action.async(parse.json) { implicit request =>
     request.body.validate[OrderElement].map {
       orderElement =>
-        orderElementRepository.create(orderElement.product_id).map {
+        orderElementRepository.create(orderElement.productId).map {
           res =>
             Ok(Json.toJson(res))
         }
@@ -112,7 +112,7 @@ class OrderElementController @Inject()(cc: MessagesControllerComponents, orderEl
     val orderelement = orderElementRepository.getById(id.toLong)
 
     orderelement.map(orderelement => {
-      val ordForm = _updateOrderElementForm.fill(UpdateOrderElementForm(orderelement.id, orderelement.product_id))
+      val ordForm = _updateOrderElementForm.fill(UpdateOrderElementForm(orderelement.id, orderelement.productId))
 
       Ok(views.html.orderelement.orderelement_update(ordForm, _productList))
     })

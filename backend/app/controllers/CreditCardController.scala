@@ -70,7 +70,7 @@ class CreditCardController @Inject()(cc: MessagesControllerComponents, creditCar
   def addCreditCard(): Action[JsValue] = Action.async(parse.json) { implicit request =>
     request.body.validate[CreditCard].map {
       creditCard =>
-        creditCardRepository.create(creditCard.holder_name, creditCard.number, creditCard.cvv, creditCard.date).map {
+        creditCardRepository.create(creditCard.holderName, creditCard.number, creditCard.cvv, creditCard.date).map {
           res =>
             Ok(Json.toJson(res))
         }
@@ -114,7 +114,7 @@ class CreditCardController @Inject()(cc: MessagesControllerComponents, creditCar
     val creditCard = creditCardRepository.getById(id.toLong)
 
     creditCard.map(creditCard => {
-      val creForm = _updateCreditCardForm.fill(UpdateCreditCardForm(creditCard.id, creditCard.holder_name, creditCard.number, creditCard.cvv, creditCard.date))
+      val creForm = _updateCreditCardForm.fill(UpdateCreditCardForm(creditCard.id, creditCard.holderName, creditCard.number, creditCard.cvv, creditCard.date))
 
       Ok(views.html.creditcard.creditcard_update(creForm))
     })
