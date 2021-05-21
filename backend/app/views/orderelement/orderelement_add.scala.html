@@ -7,7 +7,7 @@
 @form(routes.OrderElementController.addOrderElementHandler) {
     @helper.CSRF.formField
 
-    <select name="product_id" id="product_id">
+    <select name="productId" id="productId">
     @for(pro <- product) {
         <option value="@pro.id">@pro.name</option>
     }

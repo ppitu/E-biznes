@@ -8,7 +8,7 @@
     @helper.CSRF.formField
     <input name="id" id="id" value="@orderElement("id").value" type="hidden" />
 
-    <select name="product_id" id="product_id">
+    <select name="productId" id="productId">
     @for(pro <- product){
         @if(pro.id==orderElement("product_id").value.getOrElse(0)) {
             <option value="@pro.id" selected>@pro.name</option>
