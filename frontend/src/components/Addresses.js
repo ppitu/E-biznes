@@ -11,7 +11,7 @@ class Addresses extends Component {
     }
 
     componentDidMount() {
-        getAddress()
+        getAddress(this.props.id)
             .then(res => {
                 const addresses = res.data;
                 this.setState({addresses: addresses})
@@ -21,13 +21,7 @@ class Addresses extends Component {
     render() {
         return(
             <div className="addresses">
-                <ul>
-                    {this.state.addresses.map((address, index) => (
-                        <div key={index}>
-                            <h2>{address.id}: {address.street}, {address.city}, {address.zipcode}</h2>
-                        </div>
-                    ))}
-                </ul>
+                <h2>{this.state.addresses.id}: {this.state.addresses.street}, {this.state.addresses.city}, {this.state.addresses.zipcode}</h2>
             </div>
         )
     }

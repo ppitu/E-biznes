@@ -38,8 +38,8 @@ export const getUsers = () => {
     })
 }
 
-export const getCreditCard = () => {
-    return axios.get(creditCardURL, {
+export const getCreditCard = (id) => {
+    return axios.get(`${creditCardURL}/${id}`, {
         method: 'GET',
         mode: 'cors',
         headers: {
