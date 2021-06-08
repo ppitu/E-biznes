@@ -1,37 +1,29 @@
-import React, {Component} from "react";
-import axios from "axios";
+import React, {useEffect, useState} from "react";
 import {getOrder} from "../RestRequester";
 
-class Orders extends Component {
-    constructor() {
-        super();
-        this.state = {
-            orders: [],
-        }
-    }
+function Orders() {
+    const [orders, setOrders] = useState([]);
 
-    componentDidMount() {
+    useEffect(() => {
         getOrder()
             .then(res => {
-                const orders = res.data;
-                this.setState({orders: orders})
-            })
-    }
+                setOrders( res.data
+                )
 
-    render() {
-        return(
-            <div className="orders">
-                <ul>
-                    {this.state.orders.map((order, index) => (
-                        <div key={index}>
-                            <h2>{order.id}: {order.amount}</h2>
-                            <p>{order.date}</p>
-                        </div>
-                    ))}
-                </ul>
-            </div>
-        )
-    }
+            })}, []);
+
+    return(
+        <div className="orders">
+            <ul>
+                {orders.map((order, index) => (
+                    <div key={index}>
+                        <h2>{order.id}: {order.amount}</h2>
+                        <p>{order.date}</p>
+                    </div>
+                ))}
+            </ul>
+        </div>
+    );
 }
 
 export default Orders;

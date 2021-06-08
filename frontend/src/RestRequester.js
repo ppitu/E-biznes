@@ -6,7 +6,7 @@ const categoryURL = `${serverURL}/categories`;
 const creditCardURL = `${serverURL}/creditcards`;
 const addressURL = `${serverURL}/address`;
 const userURL = `${serverURL}/users`;
-const orderURL = `${serverURL}/order`;
+const orderURL = `${serverURL}/orders`;
 
 export const getProducts = () => {
     return axios.get(productURL, {

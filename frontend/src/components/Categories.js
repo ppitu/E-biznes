@@ -1,38 +1,26 @@
-import React, {Component} from "react";
-import axios from 'axios';
-import {
-    BrowserRouter as Router,
-    Route,
-    Link
-} from 'react-router-dom';
+import React, {useEffect, useState} from "react";
 
 import {getCategories} from "../RestRequester";
 
-class Categories extends Component {
-    constructor() {
-        super();
-        this.state = {
-            categories: [],
-        }
-    }
+function Categories() {
+    const [categories, setCategory] = useState([]);
 
-    componentDidMount() {
+    useEffect(() => {
         getCategories()
             .then(res => {
-                const category = res.data;
-                this.setState({categories: category})
-            })
-    }
+                setCategory(res.data
+                )
 
-    render() {
-        return (
-            <select name="category" value={this.state.categories}>
-                {this.state.categories.map((category, index) => (
-                    <option value={category.id}>{category.name}</option>
-                ))}
-            </select>
-        );
-    }
+    })}, []);
+
+    return (
+                <select name="category" value={categories}>
+                    {categories.map((category, index) => (
+                        <option value={category.id}>{category.name}</option>
+                    ))}
+                </select>
+            );
+
 }
 
 export default Categories;

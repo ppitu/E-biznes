@@ -1,32 +1,22 @@
-import React, {Component} from "react";
-import {getCreditCard} from "../RestRequester";
+import React, {useEffect, useState} from "react";
+import {getCreditCard, getProducts} from "../RestRequester";
 
-class CreditCards extends Component{
-    constructor(props) {
-        super(props);
-        this.state = {
-            creditCards: [],
-        }
-    }
+function CreditCards() {
+    const [creditCards, setCreditCards] = useState([]);
 
-    componentDidMount() {
-        getCreditCard(this.props.id)
+    useEffect(() => {
+        getCreditCard()
             .then(res => {
-                const creditCards = res.data;
-                this.setState({creditCards: creditCards})
-            })
-    }
+                setCreditCards(res.data)
+            })}, []
+    );
 
-    render() {
-        return(
-            <div className="creditcards">
-                            <h2>{this.state.creditCards.id}: {this.state.creditCards.holderName}</h2>
-                            <p>{this.state.creditCards.number}, {this.state.creditCards.cvv}, {this.state.creditCards.date}</p>
-            </div>
-        )
-    }
-
-
+    return(
+        <div className="creditcards">
+            <h2>{creditCards.id}: {this.state.creditCards.holderName}</h2>
+            <p>{creditCards.number}, {this.state.creditCards.cvv}, {this.state.creditCards.date}</p>
+        </div>
+    )
 }
 
 export default CreditCards;

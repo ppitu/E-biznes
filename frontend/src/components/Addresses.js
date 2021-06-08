@@ -1,8 +1,27 @@
-import React, {Component} from "react";
+import React, {Component, useEffect, useState} from "react";
 import axios from "axios";
-import {getAddress} from "../RestRequester";
+import {getAddress, getUsers} from "../RestRequester";
 
-class Addresses extends Component {
+function Addresses() {
+    const [addresses, setAddresses] = useState(0);
+
+    useEffect(() => {
+        getAddress()
+            .then(res => {
+                setAddresses({
+                    users: res.data
+                })
+
+            })}, []);
+
+    return(
+        <div className="addresses">
+            <h2>{addresses.id}: {addresses.street}, {addresses.city}, {addresses.zipcode}</h2>
+        </div>
+    )
+}
+
+/*class Addresses extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -25,7 +44,7 @@ class Addresses extends Component {
             </div>
         )
     }
-}
+}*/
 
 
 export default Addresses;
