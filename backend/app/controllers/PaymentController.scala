@@ -1,7 +1,7 @@
 package controllers
 
 import akka.actor.ActorSystem
-import models.{CreditCard, CreditCardRepository, Payment, PaymentRepository, User, UserRepository}
+import models.{CreditCard, CreditCardRepository, Payment, PaymentRepository, UserMy, UserMyRepository}
 import play.api.data.Forms.{longNumber, mapping, nonEmptyText}
 import play.api.data.{Form, Forms}
 import play.api.libs.json.{JsValue, Json}
@@ -11,7 +11,7 @@ import javax.inject.Inject
 import scala.concurrent.duration.DurationInt
 import scala.concurrent.{Await, ExecutionContext, Future}
 
-class PaymentController @Inject()(cc: MessagesControllerComponents, paymentRepository: PaymentRepository, val userRepository: UserRepository, val creditCardRepository: CreditCardRepository, actorSystem: ActorSystem)(implicit exec: ExecutionContext) extends MessagesAbstractController(cc){
+class PaymentController @Inject()(cc: MessagesControllerComponents, paymentRepository: PaymentRepository, val userRepository: UserMyRepository, val creditCardRepository: CreditCardRepository, actorSystem: ActorSystem)(implicit exec: ExecutionContext) extends MessagesAbstractController(cc){
   val _paymentFrom: Form[CreatePaymentForm] = Form {
     mapping(
       "user_id" -> longNumber,
@@ -110,7 +110,7 @@ class PaymentController @Inject()(cc: MessagesControllerComponents, paymentRepos
     )
   }
 
-  val _userList: Seq[User] = Seq[User]()
+  val _userList: Seq[UserMy] = Seq[UserMy]()
   val _creditCardList: Seq[CreditCard] = Seq[CreditCard]()
 
   def updatePaymentForm(id: String): Action[AnyContent] = Action.async { implicit request: MessagesRequest[AnyContent] =>

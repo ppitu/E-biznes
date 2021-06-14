@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from "react";
 import {getCreditCard, getProducts} from "../RestRequester";
 
-function CreditCards() {
+function CreditCards(props) {
     const [creditCards, setCreditCards] = useState([]);
 
     useEffect(() => {
-        getCreditCard()
+        getCreditCard(props.id)
             .then(res => {
                 setCreditCards(res.data)
             })}, []
@@ -13,8 +13,8 @@ function CreditCards() {
 
     return(
         <div className="creditcards">
-            <h2>{creditCards.id}: {this.state.creditCards.holderName}</h2>
-            <p>{creditCards.number}, {this.state.creditCards.cvv}, {this.state.creditCards.date}</p>
+            <h2>{creditCards.id}: {creditCards.holderName}</h2>
+            <p>{creditCards.number}, {creditCards.cvv}, {creditCards.date}</p>
         </div>
     )
 }

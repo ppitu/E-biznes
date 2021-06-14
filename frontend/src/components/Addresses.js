@@ -2,11 +2,11 @@ import React, {Component, useEffect, useState} from "react";
 import axios from "axios";
 import {getAddress, getUsers} from "../RestRequester";
 
-function Addresses() {
+function Addresses(props) {
     const [addresses, setAddresses] = useState(0);
 
     useEffect(() => {
-        getAddress()
+        getAddress(props.id)
             .then(res => {
                 setAddresses({
                     users: res.data

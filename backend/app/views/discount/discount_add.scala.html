@@ -1,6 +1,6 @@
 @import helper._
 
-@(discount: Form[CreateDiscountForm], user: Seq[User], product: Seq[Product])(implicit request: MessagesRequestHeader, flash: Flash)
+@(discount: Form[CreateDiscountForm], user: Seq[UserMy], product: Seq[Product])(implicit request: MessagesRequestHeader, flash: Flash)
 
 @flash.get("success").getOrElse("")
 

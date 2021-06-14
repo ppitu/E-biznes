@@ -1,6 +1,6 @@
 @import helper._
 
-@(payment: Form[UpdatePaymentForm], user: Seq[User], creditCard: Seq[CreditCard])(implicit request: MessagesRequestHeader, flash: Flash)
+@(payment: Form[UpdatePaymentForm], user: Seq[UserMy], creditCard: Seq[CreditCard])(implicit request: MessagesRequestHeader, flash: Flash)
 
 @flash.get("success").getOrElse("")
 

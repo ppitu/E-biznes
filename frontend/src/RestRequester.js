@@ -47,8 +47,8 @@ export const getCreditCard = (id) => {
         }
     })
 }
-export const getAddress = () => {
-    return axios.get(addressURL, {
+export const getAddress = (id) => {
+    return axios.get(`${addressURL}/${id}`, {
         method: 'GET',
         mode: 'cors',
         headers: {
@@ -56,8 +56,8 @@ export const getAddress = () => {
         }
     })
 }
-export const getOrder = () => {
-    return axios.get(orderURL, {
+export const getOrder = (id) => {
+    return axios.get(`${orderURL}/${id}`, {
         method: 'GET',
         mode: 'cors',
         headers: {

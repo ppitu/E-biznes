@@ -10,7 +10,7 @@ import scala.concurrent.{ExecutionContext, Future}
 
 
 @Singleton
-class PaymentRepository @Inject()(dbConfigProvider: DatabaseConfigProvider, val userRepository: UserRepository, val creditCardRepository: CreditCardRepository)(implicit ec: ExecutionContext) {
+class PaymentRepository @Inject()(dbConfigProvider: DatabaseConfigProvider, val userRepository: UserMyRepository, val creditCardRepository: CreditCardRepository)(implicit ec: ExecutionContext) {
   val dbConfig = dbConfigProvider.get[JdbcProfile]
 
   import dbConfig._

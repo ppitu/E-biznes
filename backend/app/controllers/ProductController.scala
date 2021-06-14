@@ -1,7 +1,7 @@
 package controllers
 
 import akka.actor.ActorSystem
-import models.{Category, CategoryRepository, Product, ProductRepository, User}
+import models.{Category, CategoryRepository, Product, ProductRepository, UserMy}
 import play.api.data.Form
 import play.api.data.Forms.{longNumber, mapping, nonEmptyText, number}
 import play.api.libs.json.Format.GenericFormat

@@ -1,11 +1,11 @@
 import React, {useEffect, useState} from "react";
 import {getOrder} from "../RestRequester";
 
-function Orders() {
+function Orders(props) {
     const [orders, setOrders] = useState([]);
 
     useEffect(() => {
-        getOrder()
+        getOrder(props.id)
             .then(res => {
                 setOrders( res.data
                 )

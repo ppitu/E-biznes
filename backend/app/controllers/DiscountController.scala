@@ -1,7 +1,7 @@
 package controllers
 
 import akka.actor.ActorSystem
-import models.{Discount, DiscountRepository, Product, ProductRepository, User, UserRepository}
+import models.{Discount, DiscountRepository, Product, ProductRepository, UserMy, UserMyRepository}
 import play.api.libs.json.{JsValue, Json}
 import javax.inject._
 import play.api.data.Form
@@ -12,7 +12,7 @@ import scala.concurrent.duration.DurationInt
 import scala.concurrent.{Await, ExecutionContext, Future}
 import scala.util.{Failure, Success}
 
-class DiscountController @Inject()(cc: MessagesControllerComponents, discountRepository: DiscountRepository, val productRepository: ProductRepository, val userRepository: UserRepository,  actorSystem: ActorSystem)(implicit exec: ExecutionContext) extends MessagesAbstractController(cc){
+class DiscountController @Inject()(cc: MessagesControllerComponents, discountRepository: DiscountRepository, val productRepository: ProductRepository, val userRepository: UserMyRepository, actorSystem: ActorSystem)(implicit exec: ExecutionContext) extends MessagesAbstractController(cc){
   val _discountFrom: Form[CreateDiscountForm] = Form {
     mapping(
       "product_id" -> longNumber,
@@ -109,7 +109,7 @@ class DiscountController @Inject()(cc: MessagesControllerComponents, discountRep
     )
   }
 
-  val _userList: Seq[User] = Seq[User]()
+  val _userList: Seq[UserMy] = Seq[UserMy]()
   val _productList: Seq[Product] = Seq[Product]()
 
   def updateDiscountForm(id: String): Action[AnyContent] = Action.async { implicit request: MessagesRequest[AnyContent] =>

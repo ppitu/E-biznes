@@ -1,7 +1,7 @@
 package controllers
 
 import akka.actor.ActorSystem
-import models.{Order, OrderRepository, User, UserRepository}
+import models.{Order, OrderRepository, UserMy, UserMyRepository}
 import play.api.libs.json.{JsValue, Json}
 import javax.inject._
 import play.api.data.{Form, Forms}
@@ -11,7 +11,7 @@ import play.api.mvc._
 
 import scala.concurrent.{Await, ExecutionContext, Future}
 
-class OrderController @Inject()(cc: MessagesControllerComponents, orderRepository: OrderRepository, val userRepository: UserRepository, actorSystem: ActorSystem)(implicit exec: ExecutionContext) extends MessagesAbstractController(cc){
+class OrderController @Inject()(cc: MessagesControllerComponents, orderRepository: OrderRepository, val userRepository: UserMyRepository, actorSystem: ActorSystem)(implicit exec: ExecutionContext) extends MessagesAbstractController(cc){
   val _orderFrom: Form[CreateOrderForm] = Form {
     mapping(
       "user_id" -> longNumber,
@@ -111,7 +111,7 @@ class OrderController @Inject()(cc: MessagesControllerComponents, orderRepositor
     )
   }
 
-  val _userList: Seq[User] = Seq[User]()
+  val _userList: Seq[UserMy] = Seq[UserMy]()
 
   def updateOrderForm(id: String): Action[AnyContent] = Action.async { implicit request: MessagesRequest[AnyContent] =>
     val order = orderRepository.getById(id.toLong)

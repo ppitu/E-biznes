@@ -14,8 +14,7 @@ class Details extends Component {
             <div className="details">
                 <CreditCards id={this.props.match.params.id} />
                 <Addresses id={this.props.match.params.id} />
-                <Orders />
-                {this.props.match.params.id}
+                <Orders id={this.props.match.params.id} />
             </div>
         )
     }

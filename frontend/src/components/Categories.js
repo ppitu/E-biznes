@@ -14,7 +14,7 @@ function Categories() {
     })}, []);
 
     return (
-                <select name="category" value={categories}>
+                <select name="category">
                     {categories.map((category, index) => (
                         <option value={category.id}>{category.name}</option>
                     ))}

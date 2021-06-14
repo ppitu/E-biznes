@@ -1,7 +1,7 @@
 package controllers
 
 import akka.actor.ActorSystem
-import models.{User, UserRepository}
+import models.{UserMy, UserMyRepository}
 import play.api.libs.json.{JsValue, Json}
 import javax.inject._
 import play.api.data.Form
@@ -11,13 +11,15 @@ import play.api.mvc._
 import scala.concurrent.{ExecutionContext, Future}
 
 @Singleton
-class UserController @Inject()(cc: MessagesControllerComponents, userRepository: UserRepository,  actorSystem: ActorSystem)(implicit exec: ExecutionContext) extends MessagesAbstractController(cc){
+class UserController @Inject()(cc: MessagesControllerComponents, userRepository: UserMyRepository, actorSystem: ActorSystem)(implicit exec: ExecutionContext) extends MessagesAbstractController(cc){
 
   val _userFrom: Form[CreateUserForm] = Form {
     mapping(
       "name" -> nonEmptyText,
       "password" -> nonEmptyText,
       "email" -> nonEmptyText,
+      "creditCardId" -> longNumber,
+      "addressId" -> longNumber
     )(CreateUserForm.apply)(CreateUserForm.unapply)
   }
 
@@ -26,7 +28,9 @@ class UserController @Inject()(cc: MessagesControllerComponents, userRepository:
       "id" -> longNumber,
       "name" -> nonEmptyText,
       "password" -> nonEmptyText,
-      "email" -> nonEmptyText
+      "email" -> nonEmptyText,
+      "creditCardId" -> longNumber,
+      "addressId" -> longNumber
     )(UpdateUserForm.apply)(UpdateUserForm.unapply)
   }
 
@@ -58,13 +62,13 @@ class UserController @Inject()(cc: MessagesControllerComponents, userRepository:
     val user = userRepository.getById(id.toLong)
 
     user.map {
-      case user: User => Ok(views.html.user.user(user))
+      case user: UserMy => Ok(views.html.user.user(user))
       case _ => Redirect(routes.UserController.getUsersForm)
     }
   }
 
   def updateUser(id: String): Action[JsValue] = Action.async(parse.json) { implicit request =>
-    request.body.validate[User].map {
+    request.body.validate[UserMy].map {
       user =>
         userRepository.update(user.id, user).map {
           res =>
@@ -81,9 +85,9 @@ class UserController @Inject()(cc: MessagesControllerComponents, userRepository:
   }
 
   def addUser(): Action[JsValue] = Action.async(parse.json) { implicit request =>
-    request.body.validate[User].map {
+    request.body.validate[UserMy].map {
       user =>
-        userRepository.create(user.name, user.password, user.email).map {
+        userRepository.create(user.name, user.password, user.email, user.creditCardId, user.addressId).map {
           res =>
             Ok(Json.toJson(res))
         }
@@ -102,7 +106,7 @@ class UserController @Inject()(cc: MessagesControllerComponents, userRepository:
         )
       },
       user => {
-        userRepository.create(user.name, user.password, user.email).map { _ =>
+        userRepository.create(user.name, user.password, user.email, user.creditCardId, user.addressId).map { _ =>
           Redirect(routes.UserController.getUsersForm).flashing("success" -> "category.created")
         }
       }
@@ -113,7 +117,7 @@ class UserController @Inject()(cc: MessagesControllerComponents, userRepository:
     val user = userRepository.getById(id.toLong)
 
     user.map(user => {
-      val useForm = _updateUserForm.fill(UpdateUserForm(user.id, user.name, user.password, user.email))
+      val useForm = _updateUserForm.fill(UpdateUserForm(user.id, user.name, user.password, user.email, user.creditCardId, user.addressId))
 
       Ok(views.html.user.user_update(useForm))
     })
@@ -127,7 +131,7 @@ class UserController @Inject()(cc: MessagesControllerComponents, userRepository:
         )
       },
       user => {
-        userRepository.update(user.id, User(user.id, user.name, user.password, user.email)).map { _ =>
+        userRepository.update(user.id, UserMy(user.id, user.name, user.password, user.email, user.creditCardId, user.addressId)).map { _ =>
           Redirect(routes.UserController.getUsersForm).flashing("success" -> "category updates")
         }
       }
@@ -136,5 +140,5 @@ class UserController @Inject()(cc: MessagesControllerComponents, userRepository:
 
 }
 
-case class CreateUserForm(name: String, password: String, email: String)
-case class UpdateUserForm(id: Long, name: String, password: String, email: String)
+case class CreateUserForm(name: String, password: String, email: String, creditCardId: Long, addressId: Long)
+case class UpdateUserForm(id: Long, name: String, password: String, email: String, creditCardId: Long, addressId: Long)
